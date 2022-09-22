@@ -1,0 +1,87 @@
+* {
+    background-color: white; /*à changer plus tard, manque de lisibilité avec la couleur demandée*/
+}
+#logo {
+    margin-top:2rem;
+    display:flex;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+    width: 268px;
+}
+/*barre de recherche*/
+#search-bar {
+    width:96%;
+    height: 69px;
+    border-radius:5px;
+    background-color:#E7E7E7 ;
+    border:none;
+    margin: 2rem;
+}
+::placeholder {
+    font-size: 24px;
+    padding-left: 24px;
+    opacity: 25%;
+    vertical-align: middle;
+}
+/*icone loupe*/
+.fa-magnifying-glass {
+    font-size: 32.06px;
+    color: #000000;
+    position:absolute;
+    top:175px;
+    right:4rem;
+    background-color:#E7E7E7 ;
+}
+/*selecteurs*/
+ ul, li{
+    list-style-type:none;
+    color:white;
+}
+
+.appareils {
+    background-color: #68D9A4;
+    width: 170px;
+    height: 69px;
+    border-radius: 5px;
+    margin-left:2rem;
+}
+
+.ustensiles {
+    background-color: #ED6454;
+    width: 170px;
+    height: 69px;
+    border-radius: 5px;
+    margin-left:2rem; 
+}
+
+.ingredients {
+    background-color: #3282F7;
+    width: 170px;
+    height: 69px;
+    border-radius: 5px;
+    margin-left:2rem;
+}
+
+.search-fields {
+    display: flex;
+    flex-direction: row;
+}
+.appareils>ul {
+    background-color: #68D9A4;
+}
+.appareils>ul>li {
+    background-color: #68D9A4;
+}
+.ustensiles>ul {
+    background-color:#ED6454 ;
+}
+.ustensiles>ul> li {
+    background-color:#ED6454 ;
+}
+.ingredients>ul {
+    background-color:#3282F7 ;
+}
+.ingredients>ul>li {
+    background-color:#3282F7 ;
+}
