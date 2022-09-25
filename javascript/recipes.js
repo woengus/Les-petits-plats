@@ -292,7 +292,7 @@ const recipes = [
         "time": 60,
         "description": "Hachez les noix grossièrement. Faire fondre le chocolat avec le beurre. Mélanger les oeufs et le sucre et mélanger au chocolat. Ajouter la farine. Mélanger afin d'avoir quelque chose d'homogène puis incorporer les noix. Verser la préparation dans un moule de préférence rectangulaire. Cuire 2O à 25 minutes à 180°. Sortez du four et attendez quelques minutes pour démouler. Servir avec une boule de glace pour plus de gourmandise.",
         "appliance": "Four",
-        "ustensils": ["moule à gateaux", "casserole"]
+        "ustensils": ["moule à gâteaux", "casserole"]
     },
     {
         "id": 9,
@@ -359,7 +359,7 @@ const recipes = [
         "time": 60,
         "description": "Commencer par cuire les pommes de terre dans l'eau bouillante. Puis épluchez les et coupez les en rondelles. Émincer les oignons puis les faire dorer dans du beurre. Ajouter le jambon fumé coupé en en morceaux ainsi que les pommes de terres. Salez, poivrez à votre gout ( et celui de vos convives ) Laissez cuisiner durant environ 10 minutes puis ajouter le vin blanc. Après 5 minutes, mettre le tout dans un plat à gratin. Coupez le reblochon, soit en tranches, soit le couper en 2 dans le sens de l'épaisseur et recouvrir les pommes de terre. Cuire au four (environ 220°) durant 25 minutes. C'est prêt !",
         "appliance":"Four",
-        "ustensils": ["plat à gratin", "couteau","Économe"]
+        "ustensils": ["plat à gratin", "couteau","économe"]
     },{
         "id": 11,
         "name": "Salade tomate, mozzarella et pommes",
@@ -778,7 +778,7 @@ const recipes = [
         "time": 30,
         "description":"Faire fondre le chocolat et le beurre au bain marie. Dans un saladier battre les oeufs avec le sucre jusqu'à obtenir une texture de type mousse. Ajouter la farine ainsi que le mélange de beurre et chocolat fondu. Beurrez le moule à gateaux. Mettre au four préchauffé à 200° puis faites chauffer pendant 15 minutes. C'est prêt. Servir avec une boule de glace ou une crème dessert.",
         "appliance": "Four",
-        "ustensils":["moule à gateaux", "fouet", "casserole"]
+        "ustensils":["moule à gâteaux", "fouet", "casserole"]
     },
     {
         "id": 23,
@@ -818,7 +818,7 @@ const recipes = [
         "time": 60,
         "description":"Étaler la pate dans un moule et la piquer.Parsemer de beurre. Faire chauffer les lardon dans une poêle. Battre les oeufs en ajoutant la crème fraîche et le lait. Finalement ajouter les lardons, salez poivrez à votre gout. Verser l'ensemble sur la pâte. Cuire environ 50 minutes.",
         "appliance": "Four",
-        "ustensils":["moule à gateaux", "rouleau à patisserie", "fouet"]
+        "ustensils":["moule à gâteaux", "rouleau à pâtisserie", "fouet"]
     },
     {
         "id": 24,
@@ -1082,7 +1082,7 @@ const recipes = [
         "time": 60,
         "description":"Découper en cubes les carottes et pommes de terre. Faire revenir dans du beurre. Ajouter les lardons, une fois les lardons dorés, ajouter un grand verre d'eau. Ajouter les petit poids et les haricots verts ( tous deux pré cuits ). Ajouter Sel, poivre, thyms et laurier",
         "appliance": "Poêle",
-        "ustensils":["Couteau", "économe"]
+        "ustensils":["couteau", "économe"]
     },
     {
         "id": 32,
@@ -1304,7 +1304,7 @@ const recipes = [
         "time": 60,
         "description":"Couper les courgettes dans le sens de la longueur. Vider les courgette dans un saladier. Réserver.Faire revenir la chair des courgettes dans 25cl d'huile d'olive. Ajouter l'oignon puis la viande hachée. Mettre la farce dans les courgettes. Ajouter le coulis de tomates. Mettre au four pendant 30 minutes. Avant la fin de la cuisson ajouter le fromage râpé",
         "appliance": "Four",
-        "ustensils":["couteau", "cuillère en bois", "Poêle à frire"]
+        "ustensils":["couteau", "cuillère en bois", "poêle à frire"]
     },
     {
         "id": 38,
@@ -1481,7 +1481,7 @@ const recipes = [
         "time": 50,
         "description":"Préchauffez le fours à 200°. Étaler la pate. La mettre dans un moule. Battre les oeufs avec le sucre. Ajouter le jus de citron et le beurre. Verser le tout sur la pate. Au four 30 minutes. Bon appetit ",
         "appliance": "Four",
-        "ustensils":["rouleau à patisserie", "moule à tarte", "presse citron"]
+        "ustensils":["rouleau à pâtisserie", "moule à tarte", "presse citron"]
     }, 
     {
         "id": 44,
@@ -1653,7 +1653,7 @@ const recipes = [
         "time": 40,
         "description":"Étaler la pate a pizza. Écraser les tomates pelées, les étaler sur la pâte, ajouter les lardons et les champignons. Ajouter le gruyère eet passer au four à 220° durant 20 minutes",
         "appliance": "Four",
-        "ustensils":["rouleau à patisserie", "râpe à fromage","couteau"]
+        "ustensils":["rouleau à pâtisserie", "râpe à fromage","couteau"]
     },
     {
         "id": 49,
@@ -1721,6 +1721,6 @@ const recipes = [
         "time": 60,
         "description":"Préparer la frangipane : Mélanger le sucre la poudre d'amandes, le beurre et les oeufs. Étaler la moitié de la pate feuilleté et mettre dans un moule à tarte. Garnir de frangipane et recouvrir du reste de pate feuilletée. Mettre au four 30 minutes",
         "appliance": "Four",
-        "ustensils":["rouleau à patisserie","fouet"]
+        "ustensils":["rouleau à pâtisserie","fouet"]
     }
 ]
