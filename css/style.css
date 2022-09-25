@@ -1,6 +1,4 @@
-* {
-    background-color: white; /*à changer plus tard, manque de lisibilité avec la couleur demandée*/
-}
+
 #logo {
     margin-top:2rem;
     display:flex;
@@ -84,4 +82,55 @@
 }
 .ingredients>ul>li {
     background-color:#3282F7 ;
+}
+/*card*/
+.card {
+    height: 364px;
+    width: 364px;
+    border-radius:5px;
+    display: flex;
+    flex-direction: column;
+    margin-top:2rem;
+    margin-left:2rem;
+}
+.card-up {
+    height: 178px;
+    width: 380px;
+    background-color: #C7BEBE;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+}
+.card-down {
+    height: 178px;
+    width: 380px;
+    background-color: gray/*#E7E7E7*/ ;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+}
+.card-down-vertical {
+    display:flex;
+    flex-direction: row;
+    padding-left:1rem;
+    padding-right:2rem;
+    justify-content: space-between;
+}
+.card-down-vertical-left {
+    padding-right:2rem;
+    font-weight: 400;
+    font-size:12px;
+    width: 190px;;
+}
+
+.card-down-vertical-left h2 {
+    font-weight: 400;
+    font-size:18px;
+}
+.card-down-vertical-right {
+    width: 190px;
+    font-weight: 400;
+    font-size:12px;
+}
+.card-down-vertical-right h2 {
+    font-weight: 700;
+    font-size:18px;
 }
