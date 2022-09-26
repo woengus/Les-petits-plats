@@ -14,6 +14,7 @@ class RecipeCardsContainer {
 const recipeCardsContainer = document.querySelector(".cards");
 const cardsRecipes = [];
 
+//objet RecipeCardsContainer
 for (const recipe of recipes) {
   let card = new RecipeCardsContainer(
     recipe.description,
@@ -53,16 +54,20 @@ console.table(ingredientsUniques);
 
 function displayCard(){
     for(let i=0; i< cardsRecipes.length; i++) {
-        recipeCardsContainer.innerHTML = `<div class="card-up"></div>
-        <div class="card-down">
-            <div class="card-down-vertical">
-                <div class="card-down-vertical-left">
-                    <h2>${cardsRecipes[i].name}</h2>
-                    <p>${cardsRecipes[i].ingredients}</p>
-                </div>
-                <div class="card-down-vertical-right">
-                    <h2>${cardsRecipes[i].time} min</h2>
-                    <p>${cardsRecipes[i].description}</p>
+        console.log(i)
+        recipeCardsContainer.innerHTML = recipeCardsContainer.innerHTML +
+        `<div class="cards-flex">
+            <div class="card-up">image de ${cardsRecipes[i].name}</div>
+            <div class="card-down">
+                <div class="card-down-vertical">
+                    <div class="card-down-vertical-left">
+                        <h2>${cardsRecipes[i].name}</h2>
+                        <p>${cardsRecipes[i].ingredients}</p>
+                    </div>
+                    <div class="card-down-vertical-right">
+                        <div class ="flex-h2-time"><i class="fa-regular fa-clock"></i><h2>${cardsRecipes[i].time} min</h2></div>
+                        <p>${cardsRecipes[i].description}</p>
+                    </div>
                 </div>
             </div>
         </div>`

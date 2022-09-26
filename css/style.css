@@ -9,12 +9,16 @@
 }
 /*barre de recherche*/
 #search-bar {
-    width:96%;
+    width:1240px;
     height: 69px;
     border-radius:5px;
     background-color:#E7E7E7 ;
+    display: flex;
     border:none;
-    margin: 2rem;
+    margin-top: 2rem;
+    margin-bottom:2rem;
+    margin-left:auto;
+    margin-right:auto
 }
 ::placeholder {
     font-size: 24px;
@@ -28,13 +32,14 @@
     color: #000000;
     position:absolute;
     top:175px;
-    right:4rem;
+    right:22rem;
     background-color:#E7E7E7 ;
 }
 /*selecteurs*/
  ul, li{
     list-style-type:none;
     color:white;
+  
 }
 
 .appareils {
@@ -64,6 +69,8 @@
 .search-fields {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 18.8rem;
 }
 .appareils>ul {
     background-color: #68D9A4;
@@ -84,14 +91,22 @@
     background-color:#3282F7 ;
 }
 /*card*/
-.cards {
-    height: 364px;
-    width: 364px;
-    border-radius:5px;
+.cards-flex {
     display: flex;
     flex-direction: column;
+    padding-bottom: 50px;
+    flex-wrap: wrap;
+}
+.cards {
+    height: 364px;
+    width: 1240px;
+    border-radius:5px;
     margin-top:2rem;
-    margin-left:2rem;
+    margin-left:auto;
+    margin-right:auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 .card-up {
     height: 178px;
@@ -101,11 +116,13 @@
     border-top-right-radius:5px;
 }
 .card-down {
-    height: 178px;
+    height: auto;
     width: 380px;
     background-color: gray/*#E7E7E7*/ ;
     border-bottom-left-radius:5px;
     border-bottom-right-radius:5px;
+    display: flex;
+    flex-direction: column;
 }
 .card-down-vertical {
     display:flex;
@@ -133,4 +150,14 @@
 .card-down-vertical-right h2 {
     font-weight: 700;
     font-size:18px;
+}
+.flex-h2-time {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.fa-clock {
+    margin-right: 1rem;
+    font-size: 20px;
+    margin-top:16px;
 }
