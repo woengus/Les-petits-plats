@@ -14,6 +14,7 @@
     border-radius:5px;
     background-color:#E7E7E7 ;
     display: flex;
+    flex-direction: row;
     border:none;
     margin-top: 2rem;
     margin-bottom:2rem;
@@ -69,8 +70,9 @@
 .search-fields {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    margin-left: 18.8rem;
+    
+    margin-left: auto;
+    margin-right: auto;
 }
 .appareils>ul {
     background-color: #68D9A4;
