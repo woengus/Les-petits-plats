@@ -24,7 +24,7 @@ for (const recipe of recipes) {
   cardsRecipes.push(card);
 }
 
-//console.table(cardsRecipes)
+console.table(cardsRecipes)
 
 /*récupération de tous les ingrédients*/
 
@@ -42,8 +42,31 @@ for (let i = 0; i < recipes.length; i++) {
     //});
   }
 }
-console.table(allIngredients)
+
 /*console.table(allIngredients) on a la les ingrédients filtrés mais avec des doublons
     pour filtrer le tableau de ses doublons, on utilise la méthode Set, https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set*/
 const ingredientsUniques = new Set(allIngredients);
 console.table(ingredientsUniques);
+
+
+//affichage card
+
+function displayCard(){
+    for(let i=0; i< cardsRecipes.length; i++) {
+        recipeCardsContainer.innerHTML = `<div class="card-up"></div>
+        <div class="card-down">
+            <div class="card-down-vertical">
+                <div class="card-down-vertical-left">
+                    <h2>${cardsRecipes[i].name}</h2>
+                    <p>${cardsRecipes[i].ingredients}</p>
+                </div>
+                <div class="card-down-vertical-right">
+                    <h2>${cardsRecipes[i].time} min</h2>
+                    <p>${cardsRecipes[i].description}</p>
+                </div>
+            </div>
+        </div>`
+    }
+    
+}
+displayCard();
