@@ -1,3 +1,4 @@
+//import {recipes} from "./recipes";
 console.log(recipes);
 /*class RecipeCardContainer, pour récupérer les données de recipes.js à afficher*/
 class RecipeCardsContainer {
@@ -52,56 +53,61 @@ const ingredientsUniques = new Set(allIngredients);
 
 //affichage card
 
-function displayCard(){
-console.table(cardsRecipes[0].ingredients[0].ingredient)
-    for(let i=0; i< cardsRecipes.length; i++) {
+function displayCard(listRecipes){
+console.table(listRecipes)
+    let recipesHTML = "";
+    for(let i=0; i< listRecipes.length; i++) {
       
-        recipeCardsContainer.innerHTML = recipeCardsContainer.innerHTML +
+       recipesHTML += 
         `<div class="cards-flex">
-            <div class="card-up">image de ${cardsRecipes[i].name}</div>
+            <div class="card-up">image de ${listRecipes[i].name}</div>
             <div class="card-down">
                 <div class="card-down-vertical">
                     <div class="card-down-vertical-left">
-                        <h2>${cardsRecipes[i].name}</h2>
-                        <p>${cardsRecipes[i].ingredients[0].ingredient}</p>
+                        <h2>${listRecipes[i].name}</h2>
+                        <ul>${listRecipes[i].ingredients[0].ingredient}</ul>
                     </div>
                     <div class="card-down-vertical-right">
-                        <div class ="flex-h2-time"><i class="fa-regular fa-clock"></i><h2>${cardsRecipes[i].time} min</h2></div>
-                        <p>${cardsRecipes[i].description}</p>
+                        <div class ="flex-h2-time"><i class="fa-regular fa-clock"></i><h2>${listRecipes[i].time} min</h2></div>
+                        <p>${listRecipes[i].description}</p>
                     </div>
                 </div>
             </div>
         </div>`
         
     }
-    
+    recipeCardsContainer.innerHTML = recipesHTML;
 }
-displayCard();
+displayCard(recipes);
 
 //barre de recherche évenement keyup
 
 const searchbar = document.querySelector("#search-bar");
 
-searchbar.addEventListener("keyup", (e) => {
-    //console.log(e.target.value)
-    const typedLetters = e.target.value; //on stocke les lettres recherchées tappées dans la barre de recherche
-    const cards = document.querySelectorAll(".cards-flex"); //on selectionne toutes les cards
-    //console.log(cards) on vérifie qu'on a bien toutes les recettes
-
+searchbar.addEventListener("input", (e) => {
+    console.log(e.target.value)
+    const typedLetters = e.target.value.toLocaleLowerCase(); //on stocke les lettres recherchées tappées dans la barre de recherche
+ 
 //function pour rechercher 
-    function searchFilter(letters, cardLetters) { 
+    function searchFilter(letters) { 
+        let recipeFiltered = [];
         if(letters.length >2 ) {    //on cherche des mots de plus de 2 lettres
             //on boucle sur les elements
-            for (let i = 0; i < cardLetters.length; i++) {
-                //on vérifie qu'on a dans les cards les lettres recherchées avec la méthode includes()
-                if(cardLetters[i].textContent.toLowerCase().includes(letters)) { //on vérifie si le contenu du texte de la card possède les lettres recherchées, en mettant en minuscule
-                    cardLetters[i].style.display = "block"; //on affiche les cards contenant les lettres recherchées
-                }
-                else {
-                    cardLetters[i].style.display ="none"; //on enlève les cards ne comportant pas les lettres recherchées
+            for (let i = 0; i < recipes.length; i++) {
+                //on vérifie qu'on a dans les recettes les lettres recherchées avec la méthode includes()
+                if(recipes[i].description.toLowerCase().includes(letters) || 
+                recipes[i].name.toLocaleLowerCase().includes(letters) ) { //todo : chercher sur les ingrédients
+                    console.log(recipes[i])
+                    recipeFiltered.push(recipes[i]); //on affiche les cards contenant les lettres recherchées
                 }
             }
+            //todo: else, boucler sur les ingrédients
+            console.log(recipeFiltered)
+            displayCard(recipeFiltered);
         } 
+        else {
+            displayCard(recipes);
+        }
     }
-    searchFilter(typedLetters, cards)
+    searchFilter(typedLetters)
 })
