@@ -90,7 +90,7 @@ displayCard(recipes);
 function displayListIngredients(ingredients) {
     let ingredientsHTML = ""
     for (let i =0; i < ingredients.length;i++) {
-        ingredientsHTML += `<li>${ingredients[i].quantity} ${ingredients[i].unit ? ingredients[i].unit : ""} ${ingredients[i].ingredient}</li>` //function ternaire pou unit
+        ingredientsHTML += `<li>${ingredients[i].quantity ? ingredients[i].quantity : ""} ${ingredients[i].unit ? ingredients[i].unit : ""} ${ingredients[i].ingredient}</li>` //function ternaire pour unit
     }
     return ingredientsHTML
 }
@@ -110,7 +110,7 @@ searchbar.addEventListener("input", (e) => {
             for (let i = 0; i < recipes.length; i++) {
                 //on vérifie qu'on a dans les recettes les lettres recherchées avec la méthode includes()
                 if(recipes[i].description.toLowerCase().includes(letters) || 
-                recipes[i].name.toLocaleLowerCase().includes(letters) || searchIngredients(letters, recipes[i].ingredients)) { //todo : chercher sur les ingrédients
+                recipes[i].name.toLocaleLowerCase().includes(letters) || searchIngredients(letters, recipes[i].ingredients)) { 
                     console.log(recipes[i])
                     recipeFiltered.push(recipes[i]); //on affiche les cards contenant les lettres recherchées
                 }
