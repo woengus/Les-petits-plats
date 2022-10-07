@@ -31,36 +31,23 @@ let allName = []
 recipes.map(({name}) => {
     allName.push(`${name}`)
 })
-console.table(allName.sort());
+//console.table(allName.sort());
 
 //tous les ustensiles
 let allUstensils = []
 recipes.map(({ustensils}) => {
     allUstensils.push(`${ustensils}`)
 })
-console.table(allUstensils.sort())
+//console.table(allUstensils.sort())
 
-//tous les ingrédients
-/*let allIngredients = []
-recipes.map(({ingredients}) => {
-    allIngredients.push(`${ingredients}`)
-})
-console.table(allIngredients[0].ingredient)*/
-
-
-//boucle pour récupérer les ingrédients du tableau recipe[i].ingredients
+//boucle pour récupérer tous les ingrédients
 let allIngredients = []
-for (let i = 0; i < recipes.length; i++) {
-  let ingredients = recipes[i].ingredients;
-  for (let i = 0; i < ingredients.length; i++) {
-    let ingredient = ingredients[i].ingredient;
-    allIngredients.push(ingredient);
-    //nouveau tableau avec map, avec une fonction qui push chaque ingredient dans le tableau allIngredients, à mettre en 2eme méthode algo 
-    //ingredients.map(({ ingredient }) => {
-    //  allIngredients.push(`${ingredient}`); /*ne pas oublier `$`
-    //});
-  }
-}
+recipes.forEach((recipe)=>{
+  let ingredients = recipe.ingredients;
+  ingredients.forEach((ingredient) => {
+       allIngredients.push(ingredient.ingredient);
+  })
+})
 /*console.table(allIngredients) on a la les ingrédients filtrés mais avec des doublons
 pour filtrer le tableau de ses doublons, on utilise la méthode Set, https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set*/
 const ingredientsUniques = new Set(allIngredients);
