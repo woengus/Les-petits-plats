@@ -91,10 +91,12 @@ displayCard(recipes);
 function displayListIngredients(ingredients) {
     let ingredientsHTML = ""
     ingredients.forEach((ingredient) => {
-        ingredientsHTML += `<li>${ingredient.quantity ? ingredient.quantity : ""} ${ingredient.unit ? ingredient.unit : ""} ${ingredient.ingredient}</li>` //function ternaire pour unit
+       ingredientsHTML += `<li><span class="ingredient-bold">${ingredient.ingredient}:</span> ${ingredient.quantity ? ingredient.quantity : ""} ${ingredient.unit ? ingredient.unit : ""}</li>` //function ternaire pour unit
     })
+  
     return ingredientsHTML
 }
+
 //barre de recherche évenement keyup
 
 const searchbar = document.querySelector("#search-bar");

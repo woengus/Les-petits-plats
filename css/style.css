@@ -84,7 +84,9 @@
     text-align: left;
     color: white;
 }
-
+.ingredient-bold {
+    font-weight: 700;
+}
 .search-fields {
     display: flex;
     flex-direction: row;
@@ -146,29 +148,34 @@
     border-top-right-radius:5px;
 }
 .card-down {
-    height: auto;
+    height: 178px;
     width: 380px;
     background-color: #E7E7E7;
     border-bottom-left-radius:5px;
     border-bottom-right-radius:5px;
     display: flex;
     flex-direction: column;
-    
+    padding-bottom: 2rem;;
 }
 .card-down-vertical {
     display:flex;
+    height: 170px;;
     flex-direction: row;
     padding-left:1rem;
     padding-right:2rem;
     justify-content: space-between;
     background-color: #E7E7E7;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .card-down-vertical-left {
     padding-right:2rem;
+    height: 170px;
     font-weight: 400;
     font-size:12px;
     width: 190px;
     font-family: 'Lato', sans-serif;
+    padding-bottom: 1rem;
 }
 .card-down-vertical-left ul {
     padding-left:0;
@@ -178,7 +185,8 @@
     font-weight: 400;
     font-size:18px;
     font-family: 'Lato', sans-serif;
-
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 .card-down-vertical-right {
     width: 190px;
@@ -191,6 +199,12 @@
     font-weight: 700;
     font-size:18px;
     font-family: 'Lato', sans-serif;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.card-down-vertical-right p {
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .flex-h2-time {
     display: flex;
