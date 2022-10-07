@@ -40,17 +40,18 @@
  ul, li{
     list-style-type:none;
 }
-ul {
-    position: fixed;
+.search-fields ul {
+    position: absolute;
 }
-li {
+.search-fields  li {
     position: relative;
     left:-1rem;
+    
 }
 .appareils {
     background-color: #68D9A4;
     width: 170px;
-    height: 69px;
+    height: 60px;
     border-radius: 5px;
     margin-left:2rem;
     font-size: 18px;
@@ -62,7 +63,7 @@ li {
 .ustensiles {
     background-color: #ED6454;
     width: 170px;
-    height: 69px;
+    height: 60px;
     border-radius: 5px;
     margin-left:2rem; 
     font-size: 18px;
@@ -75,7 +76,7 @@ li {
 .ingredients {
     background-color: #3282F7;
     width: 170px;
-    height: 69px;
+    height: 60px;
     border-radius: 5px;
     font-size: 18px;
     font-family: 'Lato', sans-serif;
@@ -125,6 +126,7 @@ li {
     padding-bottom: 50px;
     flex-wrap: wrap;
 }
+
 .cards {
     height: 364px;
     width: 1240px;
@@ -147,11 +149,11 @@ li {
     height: auto;
     width: 380px;
     background-color: #E7E7E7;
-    ;
     border-bottom-left-radius:5px;
     border-bottom-right-radius:5px;
     display: flex;
     flex-direction: column;
+    
 }
 .card-down-vertical {
     display:flex;
@@ -167,6 +169,9 @@ li {
     font-size:12px;
     width: 190px;
     font-family: 'Lato', sans-serif;
+}
+.card-down-vertical-left ul {
+    padding-left:0;
 }
 
 .card-down-vertical-left h2 {
