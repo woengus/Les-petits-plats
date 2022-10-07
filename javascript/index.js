@@ -121,16 +121,16 @@ searchbar.addEventListener("input", (e) => {
         let recipeFiltered = [];
         if(letters.length >2 ) {    //on cherche des mots de plus de 2 lettres
             //on boucle sur les elements
-            for (let i = 0; i < recipes.length; i++) {
+           recipes.forEach((recipe)=>{
                 //on vérifie qu'on a dans les recettes les lettres recherchées avec la méthode includes()
-                if(recipes[i].description.toLowerCase().includes(letters) || 
-                recipes[i].name.toLocaleLowerCase().includes(letters) || searchIngredients(letters, recipes[i].ingredients)) { 
-                    console.log(recipes[i])
-                    recipeFiltered.push(recipes[i]); //on affiche les cards contenant les lettres recherchées
+                if(recipe.description.toLowerCase().includes(letters) || 
+                recipe.name.toLocaleLowerCase().includes(letters) || searchIngredients(letters, recipe.ingredients)) { 
+                    console.log(recipe)
+                    recipeFiltered.push(recipe); //on affiche les cards contenant les lettres recherchées
                 }
-            }
-            //todo: else, boucler sur les ingrédients
-            console.log(recipeFiltered)
+            })
+            
+            //console.log(recipeFiltered)
             displayCard(recipeFiltered);
         } 
         else {
@@ -142,11 +142,13 @@ searchbar.addEventListener("input", (e) => {
 // function searchIngredient
 
 function searchIngredients(letters, ingredients) {
-    console.log(ingredients)
-    for (let i =0; i < ingredients; i++) {
-        if(ingredients[i].ingredient.toLocaleLowerCase().includes(letters)) {
+   
+    ingredients.forEach((ingredient) => {
+        
+        if(ingredient.ingredient.toLocaleLowerCase().includes(letters)) {
+            console.log(ingredient)
             return true
         }
-    }
+    })
     return false
 }
