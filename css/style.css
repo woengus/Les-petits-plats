@@ -40,7 +40,13 @@
  ul, li{
     list-style-type:none;
 }
-
+ul {
+    position: fixed;
+}
+li {
+    position: relative;
+    left:-1rem;
+}
 .appareils {
     background-color: #68D9A4;
     width: 170px;
@@ -103,6 +109,14 @@
 }
 .ingredients>ul>li {
     background-color:#3282F7 ;
+}
+.fa-chevron-down {
+    margin-right:1rem;
+    position: relative;
+    right:-2rem;
+}
+.ingredients .fa-chevron-down {
+    right:-1.3rem;
 }
 /*card*/
 .cards-flex {
