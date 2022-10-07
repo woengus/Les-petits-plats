@@ -39,8 +39,6 @@
 /*selecteurs*/
  ul, li{
     list-style-type:none;
-    color:white;
-  
 }
 
 .appareils {
@@ -49,6 +47,9 @@
     height: 69px;
     border-radius: 5px;
     margin-left:2rem;
+    font-size: 18px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
 }
 
 .ustensiles {
@@ -57,6 +58,10 @@
     height: 69px;
     border-radius: 5px;
     margin-left:2rem; 
+    font-size: 18px;
+    margin-top:2px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
 }
 
 .ingredients {
@@ -64,7 +69,10 @@
     width: 170px;
     height: 69px;
     border-radius: 5px;
-    
+    font-size: 18px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    text-align: left;
 }
 
 .search-fields {
@@ -121,7 +129,8 @@
 .card-down {
     height: auto;
     width: 380px;
-    background-color: gray/*#E7E7E7*/ ;
+    background-color: #E7E7E7;
+    ;
     border-bottom-left-radius:5px;
     border-bottom-right-radius:5px;
     display: flex;
@@ -133,26 +142,33 @@
     padding-left:1rem;
     padding-right:2rem;
     justify-content: space-between;
+    background-color: #E7E7E7;
 }
 .card-down-vertical-left {
     padding-right:2rem;
     font-weight: 400;
     font-size:12px;
-    width: 190px;;
+    width: 190px;
+    font-family: 'Lato', sans-serif;
 }
 
 .card-down-vertical-left h2 {
     font-weight: 400;
     font-size:18px;
+    font-family: 'Lato', sans-serif;
+
 }
 .card-down-vertical-right {
     width: 190px;
     font-weight: 400;
     font-size:12px;
+    font-family: 'Roboto', sans-serif;
+   
 }
 .card-down-vertical-right h2 {
     font-weight: 700;
     font-size:18px;
+    font-family: 'Lato', sans-serif;
 }
 .flex-h2-time {
     display: flex;
