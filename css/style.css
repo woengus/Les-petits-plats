@@ -10,6 +10,7 @@
 /*barre de recherche*/
 #search-bar {
     width:1240px;
+    position: relative;
     height: 69px;
     border-radius:5px;
     background-color:#E7E7E7 ;
@@ -29,12 +30,12 @@
 }
 /*icone loupe*/
 .fa-magnifying-glass {
-    font-size: 32.06px;
-    color: #000000;
-    position:absolute;
-    top:175px;
-    right:22rem;
-    background-color:#E7E7E7 ;
+    position: absolute;
+    font-size: 35px;
+    top: 173px;
+    right: 350px;
+    z-index: 3;
+    color: black;
 }
 /*selecteurs*/
  ul, li{
@@ -67,7 +68,7 @@
     border-radius: 5px;
     margin-left:2rem; 
     font-size: 18px;
-    margin-top:2px;
+   
     font-family: 'Lato', sans-serif;
     font-weight: 700;
     color: white;
@@ -193,7 +194,6 @@
     font-weight: 400;
     font-size:12px;
     font-family: 'Roboto', sans-serif;
-   
 }
 .card-down-vertical-right h2 {
     font-weight: 700;
@@ -202,10 +202,7 @@
     margin-bottom: 0;
     padding-bottom: 0;
 }
-.card-down-vertical-right p {
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
+
 .flex-h2-time {
     display: flex;
     flex-direction: row;
