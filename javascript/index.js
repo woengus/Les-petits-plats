@@ -36,17 +36,10 @@ for (let i = 0; i < recipes.length; i++) {
   for (let i = 0; i < ingredients.length; i++) {
     let ingredient = ingredients[i].ingredient;
     allIngredients.push(ingredient);
-   
-    /*nouveau tableau avec map, avec une fonction qui push chaque ingredient dans le tableau allIngredients, à mettre en 2eme méthode algo */
-    //ingredients.map(({ ingredient }) => {
-    //  allIngredients.push(`${ingredient}`); /*ne pas oublier `$`*/
-    //});
- 
+  
   }
   
 }
-
-
 /*console.table(allIngredients) on a la les ingrédients filtrés mais avec des doublons
 pour filtrer le tableau de ses doublons, on utilise la méthode Set, https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set*/
 const ingredientsUniques = new Set(allIngredients);
@@ -62,7 +55,7 @@ function displayCard(listRecipes){
       
        recipesHTML += 
         `<div class="cards-flex">
-            <div class="card-up">image de ${listRecipes[i].name}</div>
+            <div class="card-up"></div>
             <div class="card-down">
                 <div class="card-down-vertical">
                     <div class="card-down-vertical-left">
