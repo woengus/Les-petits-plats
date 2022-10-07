@@ -26,61 +26,75 @@ for (const recipe of recipes) {
   cardsRecipes.push(card);
 }
 
-//console.table(cardsRecipes)
+//tous les noms de recettes
+let allName = []
+recipes.map(({name}) => {
+    allName.push(`${name}`)
+})
+console.table(allName.sort());
+
+//tous les ustensiles
+let allUstensils = []
+recipes.map(({ustensils}) => {
+    allUstensils.push(`${ustensils}`)
+})
+console.table(allUstensils.sort())
+
+//tous les ingrédients
+/*let allIngredients = []
+recipes.map(({ingredients}) => {
+    allIngredients.push(`${ingredients}`)
+})
+console.table(allIngredients[0].ingredient)*/
 
 
-const allIngredients = [];
-/*boucle pour récupérer les ingrédients du tableau recipe[i].ingredients*/
+//boucle pour récupérer les ingrédients du tableau recipe[i].ingredients
+let allIngredients = []
 for (let i = 0; i < recipes.length; i++) {
   let ingredients = recipes[i].ingredients;
   for (let i = 0; i < ingredients.length; i++) {
     let ingredient = ingredients[i].ingredient;
     allIngredients.push(ingredient);
-   
-    /*nouveau tableau avec map, avec une fonction qui push chaque ingredient dans le tableau allIngredients, à mettre en 2eme méthode algo */
+    //nouveau tableau avec map, avec une fonction qui push chaque ingredient dans le tableau allIngredients, à mettre en 2eme méthode algo 
     //ingredients.map(({ ingredient }) => {
-    //  allIngredients.push(`${ingredient}`); /*ne pas oublier `$`*/
+    //  allIngredients.push(`${ingredient}`); /*ne pas oublier `$`
     //});
- 
   }
-  
 }
-
-
 /*console.table(allIngredients) on a la les ingrédients filtrés mais avec des doublons
 pour filtrer le tableau de ses doublons, on utilise la méthode Set, https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set*/
 const ingredientsUniques = new Set(allIngredients);
-//console.table(ingredientsUniques);
+console.table(ingredientsUniques);
 
 
 //affichage card
 
-function displayCard(listRecipes){
-//console.table(listRecipes)
+function displayCard(recipes){
+
     let recipesHTML = "";
-    for(let i=0; i< listRecipes.length; i++) {
+    recipes.forEach((items)=> {
       
        recipesHTML += 
         `<div class="cards-flex">
-            <div class="card-up">image de ${listRecipes[i].name}</div>
+            <div class="card-up"></div>
             <div class="card-down">
                 <div class="card-down-vertical">
                     <div class="card-down-vertical-left">
-                        <h2>${listRecipes[i].name}</h2>
+                        <h2>${items.name}</h2>
                         <ul>
-                           ${displayListIngredients(listRecipes[i].ingredients)}
+                           ${displayListIngredients(items.ingredients)}
                         
                         </ul>
                     </div>
                     <div class="card-down-vertical-right">
-                        <div class ="flex-h2-time"><i class="fa-regular fa-clock"></i><h2>${listRecipes[i].time} min</h2></div>
-                        <p>${listRecipes[i].description}</p>
+                        <div class ="flex-h2-time"><i class="fa-regular fa-clock"></i><h2>${items.time} min</h2></div>
+                        <p>${items.description}</p>
                     </div>
                 </div>
             </div>
         </div>`
         
-    }
+    })
     recipeCardsContainer.innerHTML = recipesHTML;
 }
 displayCard(recipes);
