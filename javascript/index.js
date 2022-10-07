@@ -90,9 +90,9 @@ displayCard(recipes);
 
 function displayListIngredients(ingredients) {
     let ingredientsHTML = ""
-    for (let i =0; i < ingredients.length;i++) {
-        ingredientsHTML += `<li>${ingredients[i].quantity ? ingredients[i].quantity : ""} ${ingredients[i].unit ? ingredients[i].unit : ""} ${ingredients[i].ingredient}</li>` //function ternaire pour unit
-    }
+    ingredients.forEach((ingredient) => {
+        ingredientsHTML += `<li>${ingredient.quantity ? ingredient.quantity : ""} ${ingredient.unit ? ingredient.unit : ""} ${ingredient.ingredient}</li>` //function ternaire pour unit
+    })
     return ingredientsHTML
 }
 //barre de recherche évenement keyup
