@@ -28,6 +28,8 @@
     opacity: 25%;
     vertical-align: middle;
 }
+
+
 /*icone loupe*/
 .fa-magnifying-glass {
     position: absolute;
@@ -51,43 +53,98 @@
 }
 .appareils {
     background-color: #68D9A4;
-    width: 170px;
-    height: 60px;
+    min-width: 170px;
+    min-height: 60px;
+    max-width:33% ;
+    max-height: 497px;
     border-radius: 5px;
     margin-left:2rem;
     font-size: 18px;
     font-family: 'Lato', sans-serif;
     font-weight: 700;
     color: white;
+    padding-left:1rem;
 }
-
+.appliances-search {
+    border:none;
+    background-color: #68D9A4;
+    
+}
+.appliances-search::placeholder {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size:16px;
+    color: #FFFFFF;
+    border-radius: 5px;
+    width: 300px;
+    padding-top:3px;
+   
+}
 .ustensiles {
     background-color: #ED6454;
-    width: 170px;
-    height: 60px;
+    min-width: 170px;
+    min-height: 60px;
+    max-width:33% ;
+    max-height: 397px;
     border-radius: 5px;
     margin-left:2rem; 
     font-size: 18px;
-   
     font-family: 'Lato', sans-serif;
     font-weight: 700;
     color: white;
+    padding-left:1rem;
 }
-
+.ustensils-search {
+    border:none;
+    background-color: #ED6454;
+}
+.ustensils-search::placeholder {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size:16px;
+    color: #FFFFFF;
+    border-radius: 5px;
+    width: 300px;
+    padding-top:3px;
+}
 .ingredients {
     background-color: #3282F7;
-    width: 170px;
-    height: 60px;
+    min-width: 170px;
+    min-height: 60px;
+    max-width:33% ;
+    max-height: 200vh;
     border-radius: 5px;
     font-size: 18px;
     font-family: 'Lato', sans-serif;
     font-weight: 700;
     text-align: left;
     color: white;
+    padding-left:1rem;
+    padding-right: 1rem;
+
+    }
+.ingredients-search {
+    border:none;
+    background-color: #3282F7;
+}
+.ingredients-search::placeholder {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size:15.3px;
+    color: #FFFFFF;
+    border-radius: 5px;
+    width: 300px;
+    padding-top:3px;
+    
 }
 .ingredient-bold {
     font-weight: 700;
 }
+.ingredients-list {
+    display: grid;
+    grid-template-columns: 140px 140px 140px;
+}
+
 .search-fields {
     display: flex;
     flex-direction: row;
@@ -122,6 +179,7 @@
 .ingredients .fa-chevron-down {
     right:-1.3rem;
 }
+
 /*card*/
 .cards-flex {
     display: flex;
@@ -166,17 +224,17 @@
     padding-right:2rem;
     justify-content: space-between;
     background-color: #E7E7E7;
-    text-overflow: ellipsis;
-    overflow: hidden;
+  
 }
 .card-down-vertical-left {
     padding-right:2rem;
     height: 170px;
     font-weight: 400;
-    font-size:12px;
+    font-size:11px;
     width: 190px;
     font-family: 'Lato', sans-serif;
     padding-bottom: 1rem;
+  
 }
 .card-down-vertical-left ul {
     padding-left:0;
@@ -194,6 +252,9 @@
     font-weight: 400;
     font-size:12px;
     font-family: 'Roboto', sans-serif;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 .card-down-vertical-right h2 {
     font-weight: 700;

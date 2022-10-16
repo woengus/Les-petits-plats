@@ -26,41 +26,10 @@ for (const recipe of recipes) {
   cardsRecipes.push(card);
 }
 
-//tous les noms de recettes
-let allName = []
-recipes.map(({name}) => {
-    allName.push(`${name}`)
-})
-//console.table(allName.sort());
-
-//tous les ustensiles
-let allUstensils = []
-recipes.map(({ustensils}) => {
-    allUstensils.push(`${ustensils}`)
-})
-//console.table(allUstensils.sort())
-
-//boucle pour récupérer tous les ingrédients
-let allIngredients = []
-recipes.forEach((recipe)=>{
-  let ingredients = recipe.ingredients;
-  ingredients.forEach((ingredient) => {
-       allIngredients.push(ingredient.ingredient);
-  })
-})
-/*console.table(allIngredients) on a la les ingrédients filtrés mais avec des doublons
-pour filtrer le tableau de ses doublons, on utilise la méthode Set, https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Set*/
-const ingredientsUniques = new Set(allIngredients);
-console.table(ingredientsUniques);
-
-
 //affichage card
-
 function displayCard(recipes){
-
     let recipesHTML = "";
     recipes.forEach((items)=> {
-      
        recipesHTML += 
         `<div class="cards-flex">
             <div class="card-up"></div>
@@ -70,7 +39,6 @@ function displayCard(recipes){
                         <h2>${items.name}</h2>
                         <ul>
                            ${displayListIngredients(items.ingredients)}
-                        
                         </ul>
                     </div>
                     <div class="card-down-vertical-right">
@@ -106,6 +74,8 @@ searchbar.addEventListener("input", (e) => {
     const typedLetters = e.target.value.toLocaleLowerCase(); //on stocke les lettres recherchées tappées dans la barre de recherche
  
 //function pour rechercher 
+
+
     function searchFilter(letters) { 
         let recipeFiltered = [];
         if(letters.length >2 ) {    //on cherche des mots de plus de 2 lettres
@@ -114,26 +84,35 @@ searchbar.addEventListener("input", (e) => {
                 //on vérifie qu'on a dans les recettes les lettres recherchées avec la méthode includes()
                 if(recipe.description.toLowerCase().includes(letters) || 
                 recipe.name.toLocaleLowerCase().includes(letters) || searchIngredients(letters, recipe.ingredients)) { 
-                    console.log(recipe)
-                    recipeFiltered.push(recipe); //on affiche les cards contenant les lettres recherchées
+                    recipeFiltered.push(recipe); //on affiche les cards contenant les lettres recherchées 
+                  
                 }
+              
             })
-            
+            if(recipeFiltered.length === 0) { //si on n'a pas trouvé de recette, on affiche le message d'erreur
+                document.querySelector(".notFound").innerHTML = "Aucune recette ne correspond à votre critère" 
+            }
+            else {
+                document.querySelector(".notFound").innerHTML = "" //on enlève le message d'erreur
+            }
             //console.log(recipeFiltered)
             displayCard(recipeFiltered);
+    
         } 
         else {
             displayCard(recipes);
+            document.querySelector(".notFound").innerHTML = ""
         }
     }
     searchFilter(typedLetters)
 })
+
 // function searchIngredient
 
 function searchIngredients(letters, ingredients) {
    
     ingredients.forEach((ingredient) => {
-        
+       //console.log((ingredient));
         if(ingredient.ingredient.toLocaleLowerCase().includes(letters)) {
             console.log(ingredient)
             return true
@@ -141,3 +120,70 @@ function searchIngredients(letters, ingredients) {
     })
     return false
 }
+
+
+//tous les noms de recettes
+let allName = []
+recipes.map(({name}) => {
+    allName.push(`${name}`)
+})
+
+
+//tous les appareils
+let allAppliances = []
+recipes.map(({appliance}) => {
+    if(!allAppliances.includes(appliance)){
+        allAppliances.push(appliance)
+    } 
+})
+allAppliances.sort(); //tri alphabétique
+
+//tous les ustensiles
+let allUstensils = []
+recipes.forEach((recipe) => {
+    recipe.ustensils.forEach((ustensil) => {
+        if(!allUstensils.includes(ustensil)){
+            allUstensils.push(ustensil)
+        }
+    })
+})
+//console.table(allUstensils)
+allUstensils.sort();
+
+// tous les ingrédients
+let allIngredients = []
+
+    recipes.forEach((recipe)=>{
+        let ingredients = recipe.ingredients;
+        ingredients.forEach((ingredient) => {
+              if(!allIngredients.includes(ingredient.ingredient)){ //on filtre ici pour éviter des doublons d'ingrédients
+                  allIngredients.push(ingredient.ingredient);
+              }
+        })
+      })
+
+allIngredients.sort();
+
+//console.table(allIngredients);
+
+//click sur ingredients / appareils / ustensiles
+function filterIngredients() {
+    let ingredientsHTML = ""
+    let openIngredients = `<input type="search" class="ingredients-search" placeholder="Rechercher un ingrédient"><div class="ingredients-list">${allIngredients.forEach(element => ingredientsHTML += `<li>${element}</li>`)}</div></div>`
+    document.querySelector(".ingredients").innerHTML = openIngredients
+    document.querySelector(".ingredients-list").innerHTML = ingredientsHTML
+}
+function filterUstensils() {
+    let ustensilsHTML = ""
+    let openUstensils = `<input type="search" class="ustensils-search" placeholder="Rechercher un ustensile"><div class="ustensils-List">${allUstensils.forEach(element => ustensilsHTML += `<li>${element}</li>`)}</div></div>`
+    document.querySelector(".ustensiles").innerHTML = openUstensils
+    document.querySelector(".ustensils-List").innerHTML = ustensilsHTML
+}
+
+function filterAppliances() {
+    let applianceHTML = ""
+    let openAppliances = `<input type="search" class="appliances-search" placeholder="Rechercher un appareil"><div class="appliances-List">${allAppliances.forEach(element =>  applianceHTML += `<li>${element}</li>`)}</div></div>`
+    document.querySelector(".appareils").innerHTML = openAppliances
+    document.querySelector(".appliances-List").innerHTML = applianceHTML
+}
+

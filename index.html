@@ -14,26 +14,26 @@
     <main>
         <img src="./images/logo.png" alt="Les bons petits plats" id="logo">
         <div class="search">
-            <input type="search" placeholder="Rechercher une recette" id="search-bar"> <i class="fa-solid fa-magnifying-glass"></i></div>
-           
-            
-       
+            <input type="search" placeholder="Rechercher une recette" id="search-bar"> <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="notFound"></div>
         <div class="search-result">
-            
+       
         </div>
         <div class ="search-fields">
-            <div class="ingredients">
+            
+            <div class="ingredients" onclick="filterIngredients()">
                 <ul>
                     <li>Ingrédients <i class="fa-solid fa-chevron-down"></i></li> 
                 </ul>
             </div>
             
-            <div class="appareils">
+            <div class="appareils" onclick="filterAppliances()">
                 <ul>
                     <li>Appareils <i class="fa-solid fa-chevron-down"></i></li>
                 </ul>
             </div>
-            <div class="ustensiles">
+            <div class="ustensiles" onclick="filterUstensils()">
                 <ul>
                     <li>Ustensiles <i class="fa-solid fa-chevron-down"></i></li>
                 </ul>
