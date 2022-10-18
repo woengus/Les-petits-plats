@@ -1,3 +1,5 @@
+
+
 //import {recipes} from "./recipes";
 console.log(recipes);
 /*class RecipeCardContainer, pour récupérer les données de recipes.js à afficher*/
@@ -75,9 +77,9 @@ searchbar.addEventListener("input", (e) => {
  
 //function pour rechercher 
 
-
     function searchFilter(letters) { 
         let recipeFiltered = [];
+
         if(letters.length >2 ) {    //on cherche des mots de plus de 2 lettres
             //on boucle sur les elements
            recipes.forEach((recipe)=>{
@@ -85,9 +87,8 @@ searchbar.addEventListener("input", (e) => {
                 if(recipe.description.toLowerCase().includes(letters) || 
                 recipe.name.toLocaleLowerCase().includes(letters) || searchIngredients(letters, recipe.ingredients)) { 
                     recipeFiltered.push(recipe); //on affiche les cards contenant les lettres recherchées 
-                  
                 }
-              
+                
             })
             if(recipeFiltered.length === 0) { //si on n'a pas trouvé de recette, on affiche le message d'erreur
                 document.querySelector(".notFound").innerHTML = "Aucune recette ne correspond à votre critère" 
@@ -97,14 +98,22 @@ searchbar.addEventListener("input", (e) => {
             }
             //console.log(recipeFiltered)
             displayCard(recipeFiltered);
-    
+            getAllAplliances(recipeFiltered);
+            getAllIngredients(recipeFiltered);
+            getAllUstensils(recipeFiltered);
+           
         } 
         else {
             displayCard(recipes);
+            getAllAplliances(recipes);
+            getAllIngredients(recipes);
+            getAllUstensils(recipes);
             document.querySelector(".notFound").innerHTML = ""
         }
+       
     }
     searchFilter(typedLetters)
+    
 })
 
 // function searchIngredient
@@ -130,16 +139,23 @@ recipes.map(({name}) => {
 
 
 //tous les appareils
-let allAppliances = []
+function getAllAplliances(recipes) {
+    let allAppliances = []
+
 recipes.map(({appliance}) => {
     if(!allAppliances.includes(appliance)){
         allAppliances.push(appliance)
+        console.log(appliance);
     } 
 })
 allAppliances.sort(); //tri alphabétique
+displayAppliances(allAppliances)
+}
+
 
 //tous les ustensiles
-let allUstensils = []
+function getAllUstensils(recipes) {
+    let allUstensils = []
 recipes.forEach((recipe) => {
     recipe.ustensils.forEach((ustensil) => {
         if(!allUstensils.includes(ustensil)){
@@ -147,11 +163,15 @@ recipes.forEach((recipe) => {
         }
     })
 })
-//console.table(allUstensils)
+console.table(allUstensils)
 allUstensils.sort();
+displayUstensils(allUstensils);
+}
+
 
 // tous les ingrédients
-let allIngredients = []
+function getAllIngredients(recipes) {
+    let allIngredients = []
 
     recipes.forEach((recipe)=>{
         let ingredients = recipe.ingredients;
@@ -163,27 +183,37 @@ let allIngredients = []
       })
 
 allIngredients.sort();
+displayIngredients(allIngredients)
 
 //console.table(allIngredients);
+}
+
 
 //click sur ingredients / appareils / ustensiles
-function filterIngredients() {
+function displayIngredients(allIngredients) {
     let ingredientsHTML = ""
     let openIngredients = `<input type="search" class="ingredients-search" placeholder="Rechercher un ingrédient"><div class="ingredients-list">${allIngredients.forEach(element => ingredientsHTML += `<li>${element}</li>`)}</div></div>`
     document.querySelector(".ingredients").innerHTML = openIngredients
     document.querySelector(".ingredients-list").innerHTML = ingredientsHTML
 }
-function filterUstensils() {
+function displayUstensils(allUstensils) {
     let ustensilsHTML = ""
     let openUstensils = `<input type="search" class="ustensils-search" placeholder="Rechercher un ustensile"><div class="ustensils-List">${allUstensils.forEach(element => ustensilsHTML += `<li>${element}</li>`)}</div></div>`
     document.querySelector(".ustensiles").innerHTML = openUstensils
     document.querySelector(".ustensils-List").innerHTML = ustensilsHTML
 }
 
-function filterAppliances() {
+function displayAppliances(allAppliances) {
     let applianceHTML = ""
     let openAppliances = `<input type="search" class="appliances-search" placeholder="Rechercher un appareil"><div class="appliances-List">${allAppliances.forEach(element =>  applianceHTML += `<li>${element}</li>`)}</div></div>`
     document.querySelector(".appareils").innerHTML = openAppliances
     document.querySelector(".appliances-List").innerHTML = applianceHTML
 }
 
+function toggleList(list) {
+    document.querySelector(`.${list}`)
+}
+
+getAllAplliances(recipes);
+getAllIngredients(recipes);
+getAllUstensils(recipes);
