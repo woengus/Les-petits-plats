@@ -47,9 +47,9 @@
 .appliances {
     background-color: #68D9A4;
     min-width: 225px;
-    min-height: 60px;
+    /*min-height: 60px;*/
     max-width:33% ;
-    max-height: 497px;
+   /* max-height: 497px;*/
     border-radius: 5px;
     margin-left:2rem;
     font-size: 18px;
@@ -60,7 +60,7 @@
 }
 .appliances-search {
     border:none;
- 
+    margin-top:1.45rem;
     padding-top:3px;
 }
 p {
@@ -72,9 +72,9 @@ p {
 .ustensils {
     background-color: #ED6454;
     min-width: 225px;
-    min-height: 60px;
+    /*min-height: 60px;*/
     max-width:33% ;
-    max-height: 100vh;
+    /*max-height: 100vh;*/
     border-radius: 5px;
     margin-left:2rem; 
     font-size: 18px;
@@ -87,14 +87,15 @@ p {
 .ustensils-search {
     border:none;
     background-color: #ED6454;
+    margin-top:1.6rem;
 }
 
 .ingredients {
     background-color: #3282F7;
     min-width: 225px;
-    min-height: 60px;
+    /*min-height: 60px;*/
     max-width:34% ;
-    max-height: 200vh;
+    /*max-height: 200vh;*/
     border-radius: 5px;
     font-size: 18px;
     font-family: 'Lato', sans-serif;
@@ -115,7 +116,7 @@ p {
 .ingredients-search {
     border:none;
     background-color: #3282F7;
-   
+    margin-top:1.7rem;
 }
 .ingredients-search::placeholder {
     font-family: 'Lato', sans-serif;
@@ -141,7 +142,7 @@ p {
     margin-left: auto;
     margin-right: auto;
     width: 1240px;
-    
+    align-items:baseline;
 }
 .appliances>ul {
     background-color: #68D9A4;
@@ -165,14 +166,17 @@ p {
     margin-right:1rem;
     position: relative;
     right:-6rem;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
 .fa-chevron-up {
     margin-right:1rem;
     position: relative;
-    right:-12rem;
+    right:-12.4rem;
     top:-1rem;
     color:white;
-    font-size:large;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
 
 /*card*/
@@ -256,7 +260,7 @@ p {
     font-weight: 700;
     font-size:18px;
     font-family: 'Lato', sans-serif;
-    margin-bottom: 0;
+    margin-bottom: 1rem;
     padding-bottom: 0;
 }
 

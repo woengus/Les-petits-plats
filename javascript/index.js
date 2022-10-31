@@ -192,33 +192,60 @@ displayIngredients(allIngredients)
 //click sur ingredients / appareils / ustensiles
 function displayIngredients(allIngredients) {
     let ingredientsHTML = ""
-    let openIngredients = `<div class="ingredients-title"><h3>Ingrédients <i class="fa-solid fa-chevron-down"></i></h3></div><p class="ingredients-search is-invisible">Rechercher un ingrédient<i class="fa-solid fa-chevron-up"></i></p><div class="ingredients-list is-invisible">${allIngredients.forEach(element => ingredientsHTML += `<li>${element}</li>`)}</div></div>`
+    let openIngredients = 
+    `<div class="ingredients-title">
+        <h3>
+            Ingrédients 
+            <i onclick="openList('ingredients')" class="fa-solid fa-chevron-down" ></i>
+        </h3>
+    </div>
+    <p class="ingredients-search is-invisible">Rechercher un ingrédient<i onclick="openList('ingredients')" class="fa-solid fa-chevron-up" ></i></p>
+    <div class="ingredients-list is-invisible">
+        ${allIngredients.forEach(element => ingredientsHTML += `<li onClick ="clickFilter('${element}')">${element}</li>`)}
+    </div>`
     document.querySelector(".ingredients").innerHTML = openIngredients
     document.querySelector(".ingredients-list").innerHTML = ingredientsHTML
 }
 function displayUstensils(allUstensils) {
     let ustensilsHTML = ""
-    let openUstensils = `<div class="ustensils-title"><h3>Ustensiles <i class="fa-solid fa-chevron-down"></i></h3></div>
-    <p class="ustensils-search is-invisible">Rechercher un ustensile<i class="fa-solid fa-chevron-up"></i></p><div class="ustensils-list is-invisible">${allUstensils.forEach(element => ustensilsHTML += `<li>${element}</li>`)}</div></div>`
+    let openUstensils = `
+    <div class="ustensils-title">
+        <h3>
+            Ustensiles 
+            <i onclick="openList('ustensils')" class="fa-solid fa-chevron-down"></i>
+            </h3>
+        </div>
+    <p class="ustensils-search is-invisible">Rechercher un ustensile<i onclick="openList('ustensils')" class="fa-solid fa-chevron-up"></i></p>
+    <div class="ustensils-list is-invisible">
+        ${allUstensils.forEach(element => ustensilsHTML += `<li onClick ="clickFilter('${element}')">${element}</li>`)}
+    </div>`
     document.querySelector(".ustensils").innerHTML = openUstensils
     document.querySelector(".ustensils-list").innerHTML = ustensilsHTML
 }
 
 function displayAppliances(allAppliances) {
     let applianceHTML = ""
-    let openAppliances = `<div class="appliances-title"><h3>Appareils <i class="fa-solid fa-chevron-down"></i></h3></div><p class="appliances-search is-invisible">Rechercher un appareil<i class="fa-solid fa-chevron-up"></i></p><div class="appliances-list is-invisible">${allAppliances.forEach(element =>  applianceHTML += `<li>${element}</li>`)}</div></div>`
+    let openAppliances =
+     `<div class="appliances-title">
+        <h3>
+            Appareils 
+            <i onclick="openList('appliances')" class="fa-solid fa-chevron-down"></i>
+        </h3>
+     </div>
+     <p class="appliances-search is-invisible">Rechercher un appareil<i onclick="openList('appliances')" class="fa-solid fa-chevron-up"></i></p>
+     <div class="appliances-list is-invisible">${allAppliances.forEach(element =>  applianceHTML += `<li onClick ="clickFilter('${element}')">${element}</li>`)}</div>`
     document.querySelector(".appliances").innerHTML = openAppliances
     document.querySelector(".appliances-list").innerHTML = applianceHTML
 }
 
-function toggleList(list) {
+function openList(list) {
     console.log(`.${list}`+"-list")
     
     if(document.querySelector(`.${list}`+"-list").classList.contains("is-invisible")) {
         document.querySelector(`.${list}`+"-list").classList.remove("is-invisible")
+        document.querySelector(`.${list}`+"-list").classList.add("is-visible")
         document.querySelector(`.${list}`+"-search").classList.remove("is-invisible")
         document.querySelector(`.${list}`+"-search").classList.add("is-visible")
-        document.querySelector(`.${list}`+"-list").classList.add("is-visible")
         document.querySelector(`.${list}`+"-title").classList.add("is-invisible")
     }
     else {
@@ -231,6 +258,11 @@ function toggleList(list) {
     }
     
 }
+
+function clickFilter(element) {
+    console.log(element)
+}
+
 
 getAllAplliances(recipes);
 getAllIngredients(recipes);
