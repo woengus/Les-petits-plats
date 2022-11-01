@@ -201,7 +201,7 @@ function displayIngredients(allIngredients) {
     </div>
     <p class="ingredients-search is-invisible">Rechercher un ingrédient<i onclick="openList('ingredients')" class="fa-solid fa-chevron-up" ></i></p>
     <div class="ingredients-list is-invisible">
-        ${allIngredients.forEach(element => ingredientsHTML += `<li onClick ="clickFilter('${element}')">${element}</li>`)}
+        ${allIngredients.forEach(element => ingredientsHTML += `<li onClick ="addIngredient('${element}')">${element}</li>`)}
     </div>`
     document.querySelector(".ingredients").innerHTML = openIngredients
     document.querySelector(".ingredients-list").innerHTML = ingredientsHTML
@@ -217,7 +217,7 @@ function displayUstensils(allUstensils) {
         </div>
     <p class="ustensils-search is-invisible">Rechercher un ustensile<i onclick="openList('ustensils')" class="fa-solid fa-chevron-up"></i></p>
     <div class="ustensils-list is-invisible">
-        ${allUstensils.forEach(element => ustensilsHTML += `<li onClick ="clickFilter('${element}')">${element}</li>`)}
+        ${allUstensils.forEach(element => ustensilsHTML += `<li onClick ="addUstensil('${element}')">${element}</li>`)}
     </div>`
     document.querySelector(".ustensils").innerHTML = openUstensils
     document.querySelector(".ustensils-list").innerHTML = ustensilsHTML
@@ -233,7 +233,7 @@ function displayAppliances(allAppliances) {
         </h3>
      </div>
      <p class="appliances-search is-invisible">Rechercher un appareil<i onclick="openList('appliances')" class="fa-solid fa-chevron-up"></i></p>
-     <div class="appliances-list is-invisible">${allAppliances.forEach(element =>  applianceHTML += `<li onClick ="clickFilter('${element}')">${element}</li>`)}</div>`
+     <div class="appliances-list is-invisible">${allAppliances.forEach(element =>  applianceHTML += `<li onClick ="addAppliance('${element}')">${element}</li>`)}</div>`
     document.querySelector(".appliances").innerHTML = openAppliances
     document.querySelector(".appliances-list").innerHTML = applianceHTML
 }
@@ -259,10 +259,66 @@ function openList(list) {
     
 }
 
-function clickFilter(element) {
+
+let ingredientFiltered = []
+let ustensilFiltered = []
+let applianceFiltered = []
+//addIngredient et removeIngredient
+function addIngredient(element) {
+    let tagHTML = document.createElement("span")
+    tagHTML.innerHTML = `${element}<i class="fa-regular fa-circle-xmark" onclick="removeIngredient(event,'${element}')"></i>`
+    //console.log(tagHTML) 
+    document.querySelector(".filter-result").appendChild(tagHTML)
+    ingredientFiltered.push(element)
+    console.log(ingredientFiltered)
+
+}
+function removeIngredient(event,element) {
+    console.log(event.target.parentElement)
     console.log(element)
+    const tagHTML = event.target.parentElement //pour enlever le parent, croix et le span
+    document.querySelector(".filter-result").removeChild(tagHTML)
+    ingredientFiltered = ingredientFiltered.filter(ingredient => {
+        return ingredient != element;
+    })
+    console.log(ingredientFiltered)
 }
 
+//addUstensil et removeUstensil
+function addUstensil(element) {
+    let tagHTML = document.createElement("span")
+    tagHTML.innerHTML = `${element}<i class="fa-regular fa-circle-xmark" onclick="removeUstensil(event,'${element}')"></i>`
+    //console.log(tagHTML) 
+    document.querySelector(".filter-result").appendChild(tagHTML)
+    ustensilFiltered.push(element)
+}
+function removeUstensil(event,element) {
+    console.log(event.target.parentElement)
+    console.log(element)
+    const tagHTML = event.target.parentElement //pour enlever le parent, croix et le span
+    document.querySelector(".filter-result").removeChild(tagHTML)
+    ustensilFiltered = ustensilFiltered.filter(ingredient => {
+        return ingredient != element;
+    })
+}
+
+//addAppliance et removeAppliance
+function addAppliance(element) {
+    let tagHTML = document.createElement("span")
+    tagHTML.innerHTML = `${element}<i class="fa-regular fa-circle-xmark" onclick="removeAppliance(event,'${element}')"></i>`
+    //console.log(tagHTML) 
+    document.querySelector(".filter-result").appendChild(tagHTML)
+    applianceFiltered.push(element)
+}
+function removeAppliance(event,element) {
+    console.log(event.target.parentElement)
+    console.log(element)
+    const tagHTML = event.target.parentElement //pour enlever le parent, croix et le span
+    document.querySelector(".filter-result").removeChild(tagHTML)
+    applianceFiltered = applianceFiltered.filter(ingredient => {
+        return ingredient != element;
+    })
+}
 
 getAllAplliances(recipes);
 getAllIngredients(recipes);

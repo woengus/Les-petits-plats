@@ -178,7 +178,21 @@ p {
     font-size: 1.2rem;
     cursor: pointer;
 }
+/*tags*/
 
+.tag {
+   width: 120px; 
+   height: 32px;
+   border-radius: 5px;
+   color:white;
+   background-color: #ED6454;
+   font-weight: 700;
+   font-size: 14px;
+   font-family: 'Lato', sans-serif;
+   margin-bottom:1rem;
+   padding:0.5rem;
+   
+}
 /*card*/
 .cards-flex {
     display: flex;
