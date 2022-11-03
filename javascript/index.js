@@ -238,6 +238,7 @@ function displayAppliances(allAppliances) {
     document.querySelector(".appliances-list").innerHTML = applianceHTML
 }
 
+//function openList, ouvre et ferme la liste des ingrédients, appareils ou ustensiles au click sur les fleches
 function openList(list) {
     console.log(`.${list}`+"-list")
     
@@ -266,6 +267,7 @@ let applianceFiltered = []
 //addIngredient et removeIngredient
 function addIngredient(element) {
     let tagHTML = document.createElement("span")
+    tagHTML.classList.add("ingredientTag")
     tagHTML.innerHTML = `${element}<i class="fa-regular fa-circle-xmark" onclick="removeIngredient(event,'${element}')"></i>`
     //console.log(tagHTML) 
     document.querySelector(".filter-result").appendChild(tagHTML)
@@ -287,14 +289,13 @@ function removeIngredient(event,element) {
 //addUstensil et removeUstensil
 function addUstensil(element) {
     let tagHTML = document.createElement("span")
+    tagHTML.classList.add("ustensilTag")
     tagHTML.innerHTML = `${element}<i class="fa-regular fa-circle-xmark" onclick="removeUstensil(event,'${element}')"></i>`
     //console.log(tagHTML) 
     document.querySelector(".filter-result").appendChild(tagHTML)
     ustensilFiltered.push(element)
 }
 function removeUstensil(event,element) {
-    console.log(event.target.parentElement)
-    console.log(element)
     const tagHTML = event.target.parentElement //pour enlever le parent, croix et le span
     document.querySelector(".filter-result").removeChild(tagHTML)
     ustensilFiltered = ustensilFiltered.filter(ingredient => {
@@ -305,14 +306,13 @@ function removeUstensil(event,element) {
 //addAppliance et removeAppliance
 function addAppliance(element) {
     let tagHTML = document.createElement("span")
+    tagHTML.classList.add("applianceTag")
     tagHTML.innerHTML = `${element}<i class="fa-regular fa-circle-xmark" onclick="removeAppliance(event,'${element}')"></i>`
     //console.log(tagHTML) 
     document.querySelector(".filter-result").appendChild(tagHTML)
     applianceFiltered.push(element)
 }
 function removeAppliance(event,element) {
-    console.log(event.target.parentElement)
-    console.log(element)
     const tagHTML = event.target.parentElement //pour enlever le parent, croix et le span
     document.querySelector(".filter-result").removeChild(tagHTML)
     applianceFiltered = applianceFiltered.filter(ingredient => {

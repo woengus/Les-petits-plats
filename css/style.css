@@ -104,7 +104,7 @@ p {
     color: white;
     padding-left:1rem;
     padding-right: 1rem;
-
+    margin-top:1.5rem;
     }
 
 .is-visible {
@@ -143,6 +143,7 @@ p {
     margin-right: auto;
     width: 1240px;
     align-items:baseline;
+   
 }
 .appliances>ul {
     background-color: #68D9A4;
@@ -180,19 +181,45 @@ p {
 }
 /*tags*/
 
-.tag {
+.ingredientTag {
    width: 120px; 
    height: 32px;
    border-radius: 5px;
    color:white;
-   background-color: #ED6454;
+   background-color: #3282F7;
    font-weight: 700;
    font-size: 14px;
    font-family: 'Lato', sans-serif;
-   margin-bottom:1rem;
    padding:0.5rem;
-   
+   margin: 0.5rem;;
 }
+.ustensilTag {
+    width: 120px; 
+    height: 32px;
+    border-radius: 5px;
+    color:white;
+    background-color: #ED6454;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    padding:0.5rem;
+    margin: 0.5rem;;
+ }
+ .applianceTag {
+    width: 120px; 
+    height: 32px;
+    border-radius: 5px;
+    color:white;
+    background-color: #68D9A4;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    padding:0.5rem;
+    margin: 0.5rem;;
+ }
+ .fa-circle-xmark {
+    padding-left: 1rem;
+ }
 /*card*/
 .cards-flex {
     display: flex;
