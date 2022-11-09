@@ -115,7 +115,27 @@ searchbar.addEventListener("input", (e) => {
     searchFilter(typedLetters)
     
 })
+//on filtre surla liste de recettes
 
+function filterRecipes() {
+    let recipeFiltered = recipes.filter((recipe) => {
+        if (ingredientFiltered.length) {
+            let ingredientFounded = recipe.ingredients.find(ingredient => {
+                return ingredientFiltered.includes(ingredient.ingredient)
+            })
+            console.log(ingredientFounded);
+            return ingredientFounded != undefined
+            
+        }
+        
+        
+    })
+    console.log(recipeFiltered)
+    displayCard(recipeFiltered)
+    getAllAplliances(recipeFiltered);
+    getAllIngredients(recipeFiltered);
+    getAllUstensils(recipeFiltered);
+}
 // function searchIngredient
 
 function searchIngredients(letters, ingredients) {
@@ -171,23 +191,34 @@ displayUstensils(allUstensils);
 
 // tous les ingrédients
 function getAllIngredients(recipes) {
-    let allIngredients = []
+    
+    displayIngredients(allIngredients(recipes))
+
+//console.table(allIngredients);
+}
+/**
+ * Ca retourne tous les ingrédients
+ * @param {array} recipes liste de recettes
+ * @returns {array}
+ */
+function allIngredients(recipes) {
+     let allIngredients = []
 
     recipes.forEach((recipe)=>{
         let ingredients = recipe.ingredients;
         ingredients.forEach((ingredient) => {
-              if(!allIngredients.includes(ingredient.ingredient)){ //on filtre ici pour éviter des doublons d'ingrédients
-                  allIngredients.push(ingredient.ingredient);
-              }
+                if(
+                    !allIngredients.includes(ingredient.ingredient)
+                    && !ingredientFiltered.includes(ingredient.ingredient)
+                ){ //on filtre ici pour éviter des doublons d'ingrédients
+                    allIngredients.push(ingredient.ingredient);
+                }
         })
-      })
-
-allIngredients.sort();
-displayIngredients(allIngredients)
-
-//console.table(allIngredients);
+    })
+    
+    allIngredients.sort();
+    return allIngredients
 }
-
 
 //click sur ingredients / appareils / ustensiles
 function displayIngredients(allIngredients) {
@@ -201,7 +232,7 @@ function displayIngredients(allIngredients) {
     </div>
     <p class="ingredients-search is-invisible">Rechercher un ingrédient<i onclick="openList('ingredients')" class="fa-solid fa-chevron-up" ></i></p>
     <div class="ingredients-list is-invisible">
-        ${allIngredients.forEach(element => ingredientsHTML += `<li onClick ="addIngredient('${element}')">${element}</li>`)}
+        ${allIngredients.forEach(element => ingredientsHTML += `<li onClick ="addIngredient('${element}')" id="${element}">${element}</li>`)}
     </div>`
     document.querySelector(".ingredients").innerHTML = openIngredients
     document.querySelector(".ingredients-list").innerHTML = ingredientsHTML
@@ -273,8 +304,14 @@ function addIngredient(element) {
     document.querySelector(".filter-result").appendChild(tagHTML)
     ingredientFiltered.push(element)
     console.log(ingredientFiltered)
-
+  
+    filterRecipes()
 }
+/**
+ * 
+ * @param {Event} event 
+ * @param {string} element 
+ */
 function removeIngredient(event,element) {
     console.log(event.target.parentElement)
     console.log(element)
@@ -284,6 +321,7 @@ function removeIngredient(event,element) {
         return ingredient != element;
     })
     console.log(ingredientFiltered)
+    filterRecipes()
 }
 
 //addUstensil et removeUstensil
