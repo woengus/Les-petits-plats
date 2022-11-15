@@ -1,8 +1,7 @@
-
-
 //import {recipes} from "./recipes";
-console.log(recipes);
+//console.log(recipes);
 /*class RecipeCardContainer, pour récupérer les données de recipes.js à afficher*/
+
 class RecipeCardsContainer {
   constructor(description, ingredients, name, time) {
     this.description = description;
@@ -11,7 +10,8 @@ class RecipeCardsContainer {
     this.time = time;
   }
 }
-
+/* varible pour stocke larecherche*/
+let search = ""
 /*stockage des recettes*/
 
 const recipeCardsContainer = document.querySelector(".cards");
@@ -29,6 +29,10 @@ for (const recipe of recipes) {
 }
 
 //affichage card
+/**
+ * 
+ * @param {array} recipes affiche les recettes depuis le tableau recipes
+ */
 function displayCard(recipes){
     let recipesHTML = "";
     recipes.forEach((items)=> {
@@ -57,7 +61,11 @@ function displayCard(recipes){
 displayCard(recipes);
 
 //function displayListingredient
-
+/**
+ * 
+ * @param {string} ingredients 
+ * @returns création de la liste avec tous les ingrédients, la quantité et l'unité dans la card des recettes
+ */
 function displayListIngredients(ingredients) {
     let ingredientsHTML = ""
     ingredients.forEach((ingredient) => {
@@ -72,12 +80,15 @@ function displayListIngredients(ingredients) {
 const searchbar = document.querySelector("#search-bar");
 
 searchbar.addEventListener("input", (e) => {
-    console.log(e.target.value)
-    const typedLetters = e.target.value.toLocaleLowerCase(); //on stocke les lettres recherchées tappées dans la barre de recherche
+    //console.log(e.target.value)
+    search = e.target.value.toLocaleLowerCase(); //on stocke les lettres recherchées tappées dans la barre de recherche
  
 //function pour rechercher 
-
-    function searchFilter(letters) { 
+/**
+ * 
+ * @param {string} letters recherche des recettes correspondntes aux minimum de 3 lettres saisies
+ */
+    /*function searchFilter(letters) { 
         let recipeFiltered = [];
 
         if(letters.length >2 ) {    //on cherche des mots de plus de 2 lettres
@@ -112,23 +123,49 @@ searchbar.addEventListener("input", (e) => {
         }
        
     }
-    searchFilter(typedLetters)
-    
+    searchFilter(typedLetters)*/
+ filterRecipes()   
 })
 //on filtre surla liste de recettes
 
 function filterRecipes() {
+    console.log(applianceFiltered)
     let recipeFiltered = recipes.filter((recipe) => {
+        if(search.length >2) {
+            if(!recipe.description.toLowerCase().includes(search) && 
+                !recipe.name.toLocaleLowerCase().includes(search) && !searchIngredients(search, recipe.ingredients)) { 
+                    return false
+            }
+        }
         if (ingredientFiltered.length) {
             let ingredientFounded = recipe.ingredients.find(ingredient => {
                 return ingredientFiltered.includes(ingredient.ingredient)
             })
-            console.log(ingredientFounded);
-            return ingredientFounded != undefined
+            
+            if(ingredientFounded == undefined) {
+                return false
+            }
             
         }
+        if (ustensilFiltered.length) {
+            let ustensilFounded = recipe.ustensils.find(ustensil => {
+                return ustensilFiltered.includes(ustensil)
+            })
         
-        
+            if(ustensilFounded == undefined) {
+                return false
+            }
+            
+        }
+        if (applianceFiltered.length) {
+            let applianceFounded = applianceFiltered.includes(recipe.appliance)
+            console.log(applianceFounded);
+            if(applianceFounded == false) {
+                return false
+            }
+            
+        }
+        return true //retourne le filtre
     })
     console.log(recipeFiltered)
     displayCard(recipeFiltered)
@@ -143,7 +180,6 @@ function searchIngredients(letters, ingredients) {
     ingredients.forEach((ingredient) => {
        //console.log((ingredient));
         if(ingredient.ingredient.toLocaleLowerCase().includes(letters)) {
-            console.log(ingredient)
             return true
         }
     })
@@ -163,9 +199,12 @@ function getAllAplliances(recipes) {
     let allAppliances = []
 
 recipes.map(({appliance}) => {
-    if(!allAppliances.includes(appliance)){
+    if(
+        !allAppliances.includes(appliance)
+        && !applianceFiltered.includes(appliance)
+    ){
         allAppliances.push(appliance)
-        console.log(appliance);
+        
     } 
 })
 allAppliances.sort(); //tri alphabétique
@@ -178,24 +217,30 @@ function getAllUstensils(recipes) {
     let allUstensils = []
 recipes.forEach((recipe) => {
     recipe.ustensils.forEach((ustensil) => {
-        if(!allUstensils.includes(ustensil)){
+        if(
+            !allUstensils.includes(ustensil)
+            && !ustensilFiltered.includes(ustensil)
+        ){
             allUstensils.push(ustensil)
         }
     })
 })
-console.table(allUstensils)
+
 allUstensils.sort();
 displayUstensils(allUstensils);
 }
 
 
 // tous les ingrédients
-function getAllIngredients(recipes) {
-    
+/**
+ * 
+ * @param {array} recipes 
+ */
+function getAllIngredients(recipes) {  
     displayIngredients(allIngredients(recipes))
-
 //console.table(allIngredients);
 }
+
 /**
  * Ca retourne tous les ingrédients
  * @param {array} recipes liste de recettes
@@ -221,6 +266,11 @@ function allIngredients(recipes) {
 }
 
 //click sur ingredients / appareils / ustensiles
+
+/**
+ * 
+ * @param {array} allIngredients tableau contenant tous les ingrédients
+ */
 function displayIngredients(allIngredients) {
     let ingredientsHTML = ""
     let openIngredients = 
@@ -237,6 +287,11 @@ function displayIngredients(allIngredients) {
     document.querySelector(".ingredients").innerHTML = openIngredients
     document.querySelector(".ingredients-list").innerHTML = ingredientsHTML
 }
+
+/**
+ * 
+ * @param {array} allUstensils tableau contenant tous les ustensiles
+ */
 function displayUstensils(allUstensils) {
     let ustensilsHTML = ""
     let openUstensils = `
@@ -254,6 +309,10 @@ function displayUstensils(allUstensils) {
     document.querySelector(".ustensils-list").innerHTML = ustensilsHTML
 }
 
+/**
+ * 
+ * @param {array} allAppliances tableau contenant tous les appareils
+ */
 function displayAppliances(allAppliances) {
     let applianceHTML = ""
     let openAppliances =
@@ -270,6 +329,10 @@ function displayAppliances(allAppliances) {
 }
 
 //function openList, ouvre et ferme la liste des ingrédients, appareils ou ustensiles au click sur les fleches
+/**
+ * 
+ * @param {string} list vérifie la présence des class is-visible ou is-invisible pour gérer l'affichage des listes d'ingrédient appareils et ustensils
+ */
 function openList(list) {
     console.log(`.${list}`+"-list")
     
@@ -296,6 +359,10 @@ let ingredientFiltered = []
 let ustensilFiltered = []
 let applianceFiltered = []
 //addIngredient et removeIngredient
+/**
+ * 
+ * @param {string} element création d'un filtre avec l'ingredient cliqué sur la liste
+ */
 function addIngredient(element) {
     let tagHTML = document.createElement("span")
     tagHTML.classList.add("ingredientTag")
@@ -310,7 +377,7 @@ function addIngredient(element) {
 /**
  * 
  * @param {Event} event 
- * @param {string} element 
+ * @param {string} element supprime le filtre au click sur la croix de fermeture
  */
 function removeIngredient(event,element) {
     console.log(event.target.parentElement)
@@ -325,6 +392,10 @@ function removeIngredient(event,element) {
 }
 
 //addUstensil et removeUstensil
+/**
+ * 
+ * @param {string} element création d'un filtre avec l'ustensil cliqué sur la liste
+ */
 function addUstensil(element) {
     let tagHTML = document.createElement("span")
     tagHTML.classList.add("ustensilTag")
@@ -332,16 +403,27 @@ function addUstensil(element) {
     //console.log(tagHTML) 
     document.querySelector(".filter-result").appendChild(tagHTML)
     ustensilFiltered.push(element)
+    filterRecipes()
 }
+/**
+ * 
+ * @param {event} event 
+ * @param {string} element supprime le filtre au click sur la croix de fermeture
+ */
 function removeUstensil(event,element) {
     const tagHTML = event.target.parentElement //pour enlever le parent, croix et le span
     document.querySelector(".filter-result").removeChild(tagHTML)
     ustensilFiltered = ustensilFiltered.filter(ingredient => {
         return ingredient != element;
     })
+    filterRecipes()
 }
 
 //addAppliance et removeAppliance
+/**
+ * 
+ * @param {string} element création d'un filtre avec l'appareil cliqué sur la liste
+ */
 function addAppliance(element) {
     let tagHTML = document.createElement("span")
     tagHTML.classList.add("applianceTag")
@@ -349,13 +431,20 @@ function addAppliance(element) {
     //console.log(tagHTML) 
     document.querySelector(".filter-result").appendChild(tagHTML)
     applianceFiltered.push(element)
+    filterRecipes()
 }
+/**
+ * 
+ * @param {event} event 
+ * @param {string} element supprime le filtre au click sur la croix de fermeture
+ */
 function removeAppliance(event,element) {
     const tagHTML = event.target.parentElement //pour enlever le parent, croix et le span
     document.querySelector(".filter-result").removeChild(tagHTML)
     applianceFiltered = applianceFiltered.filter(ingredient => {
         return ingredient != element;
     })
+    filterRecipes()
 }
 
 getAllAplliances(recipes);
