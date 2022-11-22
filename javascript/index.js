@@ -1,7 +1,4 @@
-//import {recipes} from "./recipes";
-//console.log(recipes);
 /*class RecipeCardContainer, pour récupérer les données de recipes.js à afficher*/
-
 class RecipeCardsContainer {
   constructor(description, ingredients, name, time) {
     this.description = description;
@@ -10,7 +7,7 @@ class RecipeCardsContainer {
     this.time = time;
   }
 }
-/* varible pour stocke larecherche*/
+/* varible pour stocker la recherche*/
 let search = ""
 /*stockage des recettes*/
 
@@ -86,7 +83,7 @@ searchbar.addEventListener("input", (e) => {
 //function pour rechercher 
 /**
  * 
- * @param {string} letters recherche des recettes correspondntes aux minimum de 3 lettres saisies
+ * @param {string} letters recherche des recettes correspondantes aux minimum de 3 lettres saisies
  */
     /*function searchFilter(letters) { 
         let recipeFiltered = [];
@@ -126,7 +123,7 @@ searchbar.addEventListener("input", (e) => {
     searchFilter(typedLetters)*/
  filterRecipes()   
 })
-//on filtre surla liste de recettes
+//on filtre sur la liste de recettes
 
 function filterRecipes() {
     console.log(applianceFiltered)
@@ -238,7 +235,6 @@ displayUstensils(allUstensils);
  */
 function getAllIngredients(recipes) {  
     displayIngredients(allIngredients(recipes))
-//console.table(allIngredients);
 }
 
 /**
@@ -280,7 +276,9 @@ function displayIngredients(allIngredients) {
             <i onclick="openList('ingredients')" class="fa-solid fa-chevron-down" ></i>
         </h3>
     </div>
-    <p class="ingredients-search is-invisible">Rechercher un ingrédient<i onclick="openList('ingredients')" class="fa-solid fa-chevron-up" ></i></p>
+    <p class="ingredients-search is-invisible">
+        <input type="search"  placeholder="Rechercher un ingrédient" ><i onclick="openList('ingredients')" class="fa-solid fa-chevron-up fa-ingredients"></i>
+        </p>
     <div class="ingredients-list is-invisible">
         ${allIngredients.forEach(element => ingredientsHTML += `<li onClick ="addIngredient('${element}')" id="${element}">${element}</li>`)}
     </div>`
@@ -301,7 +299,7 @@ function displayUstensils(allUstensils) {
             <i onclick="openList('ustensils')" class="fa-solid fa-chevron-down"></i>
             </h3>
         </div>
-    <p class="ustensils-search is-invisible">Rechercher un ustensile<i onclick="openList('ustensils')" class="fa-solid fa-chevron-up"></i></p>
+    <p class="ustensils-search is-invisible"><input type="search" placeholder="Rechercher un ustensile"><i onclick="openList('ustensils')" class="fa-solid fa-chevron-up"></i></p>
     <div class="ustensils-list is-invisible">
         ${allUstensils.forEach(element => ustensilsHTML += `<li onClick ="addUstensil('${element}')">${element}</li>`)}
     </div>`
@@ -322,7 +320,7 @@ function displayAppliances(allAppliances) {
             <i onclick="openList('appliances')" class="fa-solid fa-chevron-down"></i>
         </h3>
      </div>
-     <p class="appliances-search is-invisible">Rechercher un appareil<i onclick="openList('appliances')" class="fa-solid fa-chevron-up"></i></p>
+     <p class="appliances-search is-invisible"><input type="search" placeholder="Rechercher un appareil"><i onclick="openList('appliances')" class="fa-solid fa-chevron-up"></i></p>
      <div class="appliances-list is-invisible">${allAppliances.forEach(element =>  applianceHTML += `<li onClick ="addAppliance('${element}')">${element}</li>`)}</div>`
     document.querySelector(".appliances").innerHTML = openAppliances
     document.querySelector(".appliances-list").innerHTML = applianceHTML
@@ -333,9 +331,7 @@ function displayAppliances(allAppliances) {
  * 
  * @param {string} list vérifie la présence des class is-visible ou is-invisible pour gérer l'affichage des listes d'ingrédient appareils et ustensils
  */
-function openList(list) {
-    console.log(`.${list}`+"-list")
-    
+function openList(list) { 
     if(document.querySelector(`.${list}`+"-list").classList.contains("is-invisible")) {
         document.querySelector(`.${list}`+"-list").classList.remove("is-invisible")
         document.querySelector(`.${list}`+"-list").classList.add("is-visible")
@@ -351,9 +347,7 @@ function openList(list) {
         document.querySelector(`.${list}`+"-title").classList.remove("is-invisible")
         document.querySelector(`.${list}`+"-title").classList.add("is-visible")
     }
-    
 }
-
 
 let ingredientFiltered = []
 let ustensilFiltered = []
@@ -367,11 +361,8 @@ function addIngredient(element) {
     let tagHTML = document.createElement("span")
     tagHTML.classList.add("ingredientTag")
     tagHTML.innerHTML = `${element}<i class="fa-regular fa-circle-xmark" onclick="removeIngredient(event,'${element}')"></i>`
-    //console.log(tagHTML) 
     document.querySelector(".filter-result").appendChild(tagHTML)
     ingredientFiltered.push(element)
-    console.log(ingredientFiltered)
-  
     filterRecipes()
 }
 /**
@@ -387,7 +378,6 @@ function removeIngredient(event,element) {
     ingredientFiltered = ingredientFiltered.filter(ingredient => {
         return ingredient != element;
     })
-    console.log(ingredientFiltered)
     filterRecipes()
 }
 
@@ -400,7 +390,6 @@ function addUstensil(element) {
     let tagHTML = document.createElement("span")
     tagHTML.classList.add("ustensilTag")
     tagHTML.innerHTML = `${element}<i class="fa-regular fa-circle-xmark" onclick="removeUstensil(event,'${element}')"></i>`
-    //console.log(tagHTML) 
     document.querySelector(".filter-result").appendChild(tagHTML)
     ustensilFiltered.push(element)
     filterRecipes()
@@ -428,7 +417,6 @@ function addAppliance(element) {
     let tagHTML = document.createElement("span")
     tagHTML.classList.add("applianceTag")
     tagHTML.innerHTML = `${element}<i class="fa-regular fa-circle-xmark" onclick="removeAppliance(event,'${element}')"></i>`
-    //console.log(tagHTML) 
     document.querySelector(".filter-result").appendChild(tagHTML)
     applianceFiltered.push(element)
     filterRecipes()

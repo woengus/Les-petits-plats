@@ -25,7 +25,7 @@
 ::placeholder {
     font-size: 24px;
     padding-left: 24px;
-    opacity: 25%;
+   opacity: 90%;
     vertical-align: middle;
 }
 
@@ -63,10 +63,27 @@
     color: white;
     padding-left:1rem;
 }
-.appliances-search {
+.appliances-search input{
     border:none;
-    margin-top:1.45rem;
+    padding-top:0.5rem;
+    background-color: #68D9A4;
+    margin-left:-1rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size:15.3px;
+    color: #FFFFFF;
+    padding-left:1rem;
+}
+.appliances-search ::placeholder {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size:15.3px;
+    color: #FFFFFF;
+    border-radius: 5px;
     padding-top:3px;
+    background-color: #68D9A4;
+    border: none; 
+    opacity:none;
 }
 p {
     font-family: 'Lato', sans-serif;
@@ -77,9 +94,7 @@ p {
 .ustensils {
     background-color: #ED6454;
     min-width: 225px;
-    /*min-height: 60px;*/
     max-width:33% ;
-    /*max-height: 100vh;*/
     border-radius: 5px;
     margin-left:2rem; 
     font-size: 18px;
@@ -89,10 +104,27 @@ p {
     padding-left:1rem;
     
 }
-.ustensils-search {
+.ustensils-search input{
     border:none;
     background-color: #ED6454;
-    margin-top:1.6rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size:15.3px;
+    color: #FFFFFF;
+    padding-right:1rem;
+    padding-top:0.5rem;
+    margin-left:-1rem;
+    padding-left:1rem;
+}
+.ustensils-search ::placeholder {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size:15.3px;
+    color: #FFFFFF;
+    border-radius: 5px;
+    padding-top:3px;
+    background-color: #ED6454;
+    border: none; 
 }
 
 .ingredients {
@@ -118,20 +150,27 @@ p {
 .is-invisible {
     display: none;
 }
-.ingredients-search {
+.ingredients-search input{
     border:none;
     background-color: #3282F7;
-    margin-top:1.7rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size:15.3px;
+    color: #FFFFFF;
+    padding-right:1rem;
+    padding-top:0.5rem;
+    margin-left:-1rem;
+    padding-left:1rem;
 }
-.ingredients-search::placeholder {
+.ingredients-search ::placeholder {
     font-family: 'Lato', sans-serif;
     font-weight: 700;
     font-size:15.3px;
     color: #FFFFFF;
     border-radius: 5px;
-    width: 300px;
     padding-top:3px;
-    
+    background-color: #3282F7;
+    border: none;
 }
 .ingredient-bold {
     font-weight: 700;
@@ -184,6 +223,9 @@ p {
     font-size: 1.2rem;
     cursor: pointer;
     width: 20px;
+}
+.fa-ingredients {
+    margin-left:1rem;
 }
 /*tags*/
 
