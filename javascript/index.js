@@ -83,6 +83,10 @@ searchbar.addEventListener("input", (e) => {
 })
 
 //recherche sur ingrédients
+/**
+ * 
+ * @param {array} allIngredients 
+ */
 function searchFilterIngredients(allIngredients) {
     document.querySelector("#search-bar-ingredients").addEventListener("input" , event => {
         console.log(event.target.value);
@@ -101,6 +105,10 @@ function searchFilterIngredients(allIngredients) {
     })
 }
 //recherche sur ustensils
+/**
+ * 
+ * @param {array} allUstensils 
+ */
 function searchFilterUstensils(allUstensils) {
     document.querySelector("#search-bar-ustensils").addEventListener("input" , event => {
         console.log(event.target.value);
@@ -119,6 +127,10 @@ function searchFilterUstensils(allUstensils) {
     })
 }
 //recherche sur appliances
+/**
+ * 
+ * @param {array} allAppliances 
+ */
 function searchFilterAppliances(allAppliances) {
     document.querySelector("#search-bar-appliances").addEventListener("input" , event => {
         console.log(event.target.value);
@@ -157,7 +169,6 @@ function filterRecipes() {
             if(ingredientFounded == undefined) {
                 return false
             }
-            
         }
         if (ustensilFiltered.length) {
             let ustensilFounded = recipe.ustensils.find(ustensil => {
@@ -167,7 +178,6 @@ function filterRecipes() {
             if(ustensilFounded == undefined) {
                 return false
             }
-            
         }
         if (applianceFiltered.length) {
             let applianceFounded = applianceFiltered.includes(recipe.appliance)
@@ -175,7 +185,6 @@ function filterRecipes() {
             if(applianceFounded == false) {
                 return false
             }
-            
         }
         return true //retourne le filtre
     })
@@ -187,8 +196,7 @@ function filterRecipes() {
 }
 // function searchIngredient
 
-function searchIngredients(letters, ingredients) {
-   
+function searchIngredients(letters, ingredients) {  
     ingredients.forEach((ingredient) => {
        //console.log((ingredient));
         if(ingredient.ingredient.toLocaleLowerCase().includes(letters)) {
@@ -197,28 +205,22 @@ function searchIngredients(letters, ingredients) {
     })
     return false
 }
-
-
 //tous les noms de recettes
 let allName = []
 recipes.map(({name}) => {
     allName.push(`${name}`)
 })
-
-
 //tous les appareils
 function getAllAplliances(recipes) {
     let allAppliances = []
-
-recipes.map(({appliance}) => {
-    if(
-        !allAppliances.includes(appliance)
-        && !applianceFiltered.includes(appliance)
-    ){
-        allAppliances.push(appliance)
-        
-    } 
-})
+    recipes.map(({appliance}) => {
+        if(
+            !allAppliances.includes(appliance)
+            && !applianceFiltered.includes(appliance)
+        ){
+            allAppliances.push(appliance)
+        } 
+    })
 allAppliances.sort(); //tri alphabétique
 displayAppliances(allAppliances)
 }
@@ -227,16 +229,16 @@ displayAppliances(allAppliances)
 //tous les ustensiles
 function getAllUstensils(recipes) {
     let allUstensils = []
-recipes.forEach((recipe) => {
-    recipe.ustensils.forEach((ustensil) => {
-        if(
-            !allUstensils.includes(ustensil)
-            && !ustensilFiltered.includes(ustensil)
-        ){
-            allUstensils.push(ustensil)
-        }
+    recipes.forEach((recipe) => {
+        recipe.ustensils.forEach((ustensil) => {
+            if(
+                !allUstensils.includes(ustensil)
+                && !ustensilFiltered.includes(ustensil)
+            ){
+                allUstensils.push(ustensil)
+            }
+        })
     })
-})
 
 allUstensils.sort();
 displayUstensils(allUstensils);
@@ -291,8 +293,9 @@ function displayIngredients(allIngredients) {
             <i onclick="openList('ingredients')" class="fa-solid fa-chevron-down" ></i>
         </h3>
     </div>
-    <p class="ingredients-search is-invisible" id="ingredientsList">
-        <input type="search"  placeholder="Rechercher un ingrédient" id="search-bar-ingredients"><i onclick="openList('ingredients')" class="fa-solid fa-chevron-up fa-ingredients"></i>
+    <p class="ingredients-search is-invisible">
+        <input type="search"  placeholder="Rechercher un ingrédient" id="search-bar-ingredients">
+        <i onclick="openList('ingredients')" class="fa-solid fa-chevron-up fa-ingredients"></i>
     </p>
     <div class="ingredients-list is-invisible">
         ${allIngredients.forEach(element => ingredientsHTML += `<li onClick ="addIngredient('${element}')" id="${element}">${element}</li>`)}
@@ -316,10 +319,11 @@ function displayUstensils(allUstensils) {
             </h3>
         </div>
     <p class="ustensils-search is-invisible">
-        <input type="search" placeholder="Rechercher un ustensile" id="search-bar-ustensils"><i onclick="openList('ustensils')" class="fa-solid fa-chevron-up"></i>
+        <input type="search" placeholder="Rechercher un ustensile" id="search-bar-ustensils">
+        <i onclick="openList('ustensils')" class="fa-solid fa-chevron-up"></i>
     </p>
     <div class="ustensils-list is-invisible">
-        ${allUstensils.forEach(element => ustensilsHTML += `<li onClick ="addUstensil('${element}') id="${element}"">${element}</li>`)}
+        ${allUstensils.forEach(element => ustensilsHTML += `<li onClick ="addUstensil('${element}')" id="${element}">${element}</li>`)}
     </div>`
     document.querySelector(".ustensils").innerHTML = openUstensils
     document.querySelector(".ustensils-list").innerHTML = ustensilsHTML
@@ -343,7 +347,7 @@ function displayAppliances(allAppliances) {
         <input type="search" placeholder="Rechercher un appareil" id="search-bar-appliances"><i onclick="openList('appliances')" class="fa-solid fa-chevron-up">
         </i>
     </p>
-     <div class="appliances-list is-invisible">${allAppliances.forEach(element =>  applianceHTML += `<li onClick ="addAppliance('${element}') id="${element}">${element}</li>`)}</div>`
+     <div class="appliances-list is-invisible">${allAppliances.forEach(element =>  applianceHTML += `<li onClick ="addAppliance('${element}')" id="${element}">${element}</li>`)}</div>`
     document.querySelector(".appliances").innerHTML = openAppliances
     document.querySelector(".appliances-list").innerHTML = applianceHTML
     searchFilterAppliances(allAppliances) 
