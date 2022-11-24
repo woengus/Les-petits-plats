@@ -7,8 +7,11 @@ class RecipeCardsContainer {
     this.time = time;
   }
 }
-/* varible pour stocker la recherche*/
+/* variables pour stocker les recherches*/
 let search = ""
+let searchIngredientsList = ""
+let searchUstensilsList = ""
+let searchAppliancesList = ""
 /*stockage des recettes*/
 
 const recipeCardsContainer = document.querySelector(".cards");
@@ -73,56 +76,35 @@ function displayListIngredients(ingredients) {
 }
 
 //barre de recherche évenement keyup
-
 const searchbar = document.querySelector("#search-bar");
 
 searchbar.addEventListener("input", (e) => {
     //console.log(e.target.value)
     search = e.target.value.toLocaleLowerCase(); //on stocke les lettres recherchées tappées dans la barre de recherche
- 
-//function pour rechercher 
-/**
- * 
- * @param {string} letters recherche des recettes correspondantes aux minimum de 3 lettres saisies
- */
-    /*function searchFilter(letters) { 
-        let recipeFiltered = [];
-
-        if(letters.length >2 ) {    //on cherche des mots de plus de 2 lettres
-            //on boucle sur les elements
-           recipes.forEach((recipe)=>{
-                //on vérifie qu'on a dans les recettes les lettres recherchées avec la méthode includes()
-                if(recipe.description.toLowerCase().includes(letters) || 
-                recipe.name.toLocaleLowerCase().includes(letters) || searchIngredients(letters, recipe.ingredients)) { 
-                    recipeFiltered.push(recipe); //on affiche les cards contenant les lettres recherchées 
-                }
-                
-            })
-            if(recipeFiltered.length === 0) { //si on n'a pas trouvé de recette, on affiche le message d'erreur
-                document.querySelector(".notFound").innerHTML = "Aucune recette ne correspond à votre critère" 
-            }
-            else {
-                document.querySelector(".notFound").innerHTML = "" //on enlève le message d'erreur
-            }
-            //console.log(recipeFiltered)
-            displayCard(recipeFiltered);
-            getAllAplliances(recipeFiltered);
-            getAllIngredients(recipeFiltered);
-            getAllUstensils(recipeFiltered);
-           
-        } 
-        else {
-            displayCard(recipes);
-            getAllAplliances(recipes);
-            getAllIngredients(recipes);
-            getAllUstensils(recipes);
-            document.querySelector(".notFound").innerHTML = ""
-        }
-       
-    }
-    searchFilter(typedLetters)*/
- filterRecipes()   
+    filterRecipes()   
 })
+
+//recherche sur ingrédients
+function searchFilter(allIngredients) {
+    document.querySelector("#search-bar-ingredients").addEventListener("input" , event => {
+        console.log(event.target.value);
+        let ingredientsSearched = allIngredients.filter((ingredient)=> {
+            if(ingredient.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase())) {
+                return ingredient
+            }
+            return false
+        })
+        console.log(ingredientsSearched);
+       document.querySelector(".ingredients-list").innerHTML = `
+            ${ingredientsSearched.map(ingredient => {
+                return `<li onClick ="addIngredient('${ingredient}')" id="${ingredient}">${ingredient}</li>`
+            }).join("")}
+       `
+    })
+}
+
+
+
 //on filtre sur la liste de recettes
 
 function filterRecipes() {
@@ -243,7 +225,7 @@ function getAllIngredients(recipes) {
  * @returns {array}
  */
 function allIngredients(recipes) {
-     let allIngredients = []
+    let allIngredients = []
 
     recipes.forEach((recipe)=>{
         let ingredients = recipe.ingredients;
@@ -276,14 +258,15 @@ function displayIngredients(allIngredients) {
             <i onclick="openList('ingredients')" class="fa-solid fa-chevron-down" ></i>
         </h3>
     </div>
-    <p class="ingredients-search is-invisible">
-        <input type="search"  placeholder="Rechercher un ingrédient" ><i onclick="openList('ingredients')" class="fa-solid fa-chevron-up fa-ingredients"></i>
-        </p>
+    <p class="ingredients-search is-invisible" id="ingredientsList">
+        <input type="search"  placeholder="Rechercher un ingrédient" id="search-bar-ingredients"><i onclick="openList('ingredients')" class="fa-solid fa-chevron-up fa-ingredients"></i>
+    </p>
     <div class="ingredients-list is-invisible">
         ${allIngredients.forEach(element => ingredientsHTML += `<li onClick ="addIngredient('${element}')" id="${element}">${element}</li>`)}
     </div>`
     document.querySelector(".ingredients").innerHTML = openIngredients
     document.querySelector(".ingredients-list").innerHTML = ingredientsHTML
+    searchFilter(allIngredients) 
 }
 
 /**
@@ -299,7 +282,9 @@ function displayUstensils(allUstensils) {
             <i onclick="openList('ustensils')" class="fa-solid fa-chevron-down"></i>
             </h3>
         </div>
-    <p class="ustensils-search is-invisible"><input type="search" placeholder="Rechercher un ustensile"><i onclick="openList('ustensils')" class="fa-solid fa-chevron-up"></i></p>
+    <p class="ustensils-search is-invisible">
+        <input type="search" placeholder="Rechercher un ustensile"><i onclick="openList('ustensils')" class="fa-solid fa-chevron-up"></i>
+    </p>
     <div class="ustensils-list is-invisible">
         ${allUstensils.forEach(element => ustensilsHTML += `<li onClick ="addUstensil('${element}')">${element}</li>`)}
     </div>`

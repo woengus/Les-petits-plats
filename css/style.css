@@ -25,7 +25,7 @@
 ::placeholder {
     font-size: 24px;
     padding-left: 24px;
-   opacity: 90%;
+    opacity: 90%;
     vertical-align: middle;
 }
 
@@ -52,9 +52,7 @@
 .appliances {
     background-color: #68D9A4;
     min-width: 225px;
-    /*min-height: 60px;*/
     max-width:33% ;
-   /* max-height: 497px;*/
     border-radius: 5px;
     margin-left:2rem;
     font-size: 18px;
@@ -72,7 +70,6 @@
     font-weight: 700;
     font-size:15.3px;
     color: #FFFFFF;
-    padding-left:1rem;
 }
 .appliances-search ::placeholder {
     font-family: 'Lato', sans-serif;
@@ -114,7 +111,6 @@ p {
     padding-right:1rem;
     padding-top:0.5rem;
     margin-left:-1rem;
-    padding-left:1rem;
 }
 .ustensils-search ::placeholder {
     font-family: 'Lato', sans-serif;
@@ -160,7 +156,6 @@ p {
     padding-right:1rem;
     padding-top:0.5rem;
     margin-left:-1rem;
-    padding-left:1rem;
 }
 .ingredients-search ::placeholder {
     font-family: 'Lato', sans-serif;
