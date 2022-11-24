@@ -7,11 +7,9 @@ class RecipeCardsContainer {
     this.time = time;
   }
 }
-/* variables pour stocker les recherches*/
+/* variable pour stocker la recherche*/
 let search = ""
-let searchIngredientsList = ""
-let searchUstensilsList = ""
-let searchAppliancesList = ""
+
 /*stockage des recettes*/
 
 const recipeCardsContainer = document.querySelector(".cards");
@@ -85,7 +83,7 @@ searchbar.addEventListener("input", (e) => {
 })
 
 //recherche sur ingrédients
-function searchFilter(allIngredients) {
+function searchFilterIngredients(allIngredients) {
     document.querySelector("#search-bar-ingredients").addEventListener("input" , event => {
         console.log(event.target.value);
         let ingredientsSearched = allIngredients.filter((ingredient)=> {
@@ -102,7 +100,42 @@ function searchFilter(allIngredients) {
        `
     })
 }
-
+//recherche sur ustensils
+function searchFilterUstensils(allUstensils) {
+    document.querySelector("#search-bar-ustensils").addEventListener("input" , event => {
+        console.log(event.target.value);
+        let ustensilsSearched = allUstensils.filter((ustensil)=> {
+            if(ustensil.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase())) {
+                return ustensil
+            }
+            return false
+        })
+        console.log(ustensilsSearched);
+       document.querySelector(".ustensils-list").innerHTML = `
+            ${ustensilsSearched.map(ustensil => {
+                return `<li onClick ="addUstensil('${ustensil}')" id="${ustensil}">${ustensil}</li>`
+            }).join("")}
+       `
+    })
+}
+//recherche sur appliances
+function searchFilterAppliances(allAppliances) {
+    document.querySelector("#search-bar-appliances").addEventListener("input" , event => {
+        console.log(event.target.value);
+        let appliancesSearched = allAppliances.filter((appliance)=> {
+            if(appliance.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase())) {
+                return appliance
+            }
+            return false
+        })
+        console.log(appliancesSearched);
+       document.querySelector(".appliances-list").innerHTML = `
+            ${appliancesSearched.map(appliance => {
+                return `<li onClick ="addUstensil('${appliance}')" id="${appliance}">${appliance}</li>`
+            }).join("")}
+       `
+    })
+}
 
 
 //on filtre sur la liste de recettes
@@ -266,7 +299,7 @@ function displayIngredients(allIngredients) {
     </div>`
     document.querySelector(".ingredients").innerHTML = openIngredients
     document.querySelector(".ingredients-list").innerHTML = ingredientsHTML
-    searchFilter(allIngredients) 
+    searchFilterIngredients(allIngredients) 
 }
 
 /**
@@ -283,13 +316,14 @@ function displayUstensils(allUstensils) {
             </h3>
         </div>
     <p class="ustensils-search is-invisible">
-        <input type="search" placeholder="Rechercher un ustensile"><i onclick="openList('ustensils')" class="fa-solid fa-chevron-up"></i>
+        <input type="search" placeholder="Rechercher un ustensile" id="search-bar-ustensils"><i onclick="openList('ustensils')" class="fa-solid fa-chevron-up"></i>
     </p>
     <div class="ustensils-list is-invisible">
-        ${allUstensils.forEach(element => ustensilsHTML += `<li onClick ="addUstensil('${element}')">${element}</li>`)}
+        ${allUstensils.forEach(element => ustensilsHTML += `<li onClick ="addUstensil('${element}') id="${element}"">${element}</li>`)}
     </div>`
     document.querySelector(".ustensils").innerHTML = openUstensils
     document.querySelector(".ustensils-list").innerHTML = ustensilsHTML
+    searchFilterUstensils(allUstensils) 
 }
 
 /**
@@ -305,10 +339,14 @@ function displayAppliances(allAppliances) {
             <i onclick="openList('appliances')" class="fa-solid fa-chevron-down"></i>
         </h3>
      </div>
-     <p class="appliances-search is-invisible"><input type="search" placeholder="Rechercher un appareil"><i onclick="openList('appliances')" class="fa-solid fa-chevron-up"></i></p>
-     <div class="appliances-list is-invisible">${allAppliances.forEach(element =>  applianceHTML += `<li onClick ="addAppliance('${element}')">${element}</li>`)}</div>`
+     <p class="appliances-search is-invisible">
+        <input type="search" placeholder="Rechercher un appareil" id="search-bar-appliances"><i onclick="openList('appliances')" class="fa-solid fa-chevron-up">
+        </i>
+    </p>
+     <div class="appliances-list is-invisible">${allAppliances.forEach(element =>  applianceHTML += `<li onClick ="addAppliance('${element}') id="${element}">${element}</li>`)}</div>`
     document.querySelector(".appliances").innerHTML = openAppliances
     document.querySelector(".appliances-list").innerHTML = applianceHTML
+    searchFilterAppliances(allAppliances) 
 }
 
 //function openList, ouvre et ferme la liste des ingrédients, appareils ou ustensiles au click sur les fleches
