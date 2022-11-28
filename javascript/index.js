@@ -158,9 +158,12 @@ function filterRecipes() {
         if(search.length >2) {
             if(!recipe.description.toLowerCase().includes(search) && 
                 !recipe.name.toLocaleLowerCase().includes(search) && !searchIngredients(search, recipe.ingredients)) { 
+                    document.querySelector(".notFound").innerHTML = "Aucune recette ne correspond à votre critère" //message d'erreur si aucune recette trouvée
                     return false
             }
         }
+        
+       
         if (ingredientFiltered.length) {
             let ingredientFounded = recipe.ingredients.find(ingredient => {
                 return ingredientFiltered.includes(ingredient.ingredient)
@@ -186,6 +189,7 @@ function filterRecipes() {
                 return false
             }
         }
+        document.querySelector(".notFound").innerHTML = "" //on enlève le message d'erreur
         return true //retourne le filtre
     })
     console.log(recipeFiltered)

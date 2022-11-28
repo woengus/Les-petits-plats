@@ -8,6 +8,12 @@
     width: 268px;
 }
 /*barre de recherche*/
+.notFound {
+    position: relative;
+    margin-left:auto;
+    margin-right:auto;   
+    width: 1240px;
+}
 #search-bar {
     width:1240px;
     position: relative;
