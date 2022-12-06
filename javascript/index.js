@@ -77,7 +77,7 @@ function displayListIngredients(ingredients) {
 const searchbar = document.querySelector("#search-bar");
 
 searchbar.addEventListener("input", (e) => {
-    //console.log(e.target.value)
+    
     search = e.target.value.toLocaleLowerCase(); //on stocke les lettres recherchées tappées dans la barre de recherche
     filterRecipes()   
 })
@@ -89,14 +89,13 @@ searchbar.addEventListener("input", (e) => {
  */
 function searchFilterIngredients(allIngredients) {
     document.querySelector("#search-bar-ingredients").addEventListener("input" , event => {
-        console.log(event.target.value);
+
         let ingredientsSearched = allIngredients.filter((ingredient)=> {
             if(ingredient.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase())) {
                 return ingredient
             }
             return false
         })
-        console.log(ingredientsSearched);
        document.querySelector(".ingredients-list").innerHTML = `
             ${ingredientsSearched.map(ingredient => {
                 return `<li onClick ="addIngredient('${ingredient}')" id="${ingredient}">${ingredient}</li>`
@@ -111,14 +110,14 @@ function searchFilterIngredients(allIngredients) {
  */
 function searchFilterUstensils(allUstensils) {
     document.querySelector("#search-bar-ustensils").addEventListener("input" , event => {
-        console.log(event.target.value);
+       
         let ustensilsSearched = allUstensils.filter((ustensil)=> {
             if(ustensil.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase())) {
                 return ustensil
             }
             return false
         })
-        console.log(ustensilsSearched);
+        
        document.querySelector(".ustensils-list").innerHTML = `
             ${ustensilsSearched.map(ustensil => {
                 return `<li onClick ="addUstensil('${ustensil}')" id="${ustensil}">${ustensil}</li>`
@@ -133,14 +132,14 @@ function searchFilterUstensils(allUstensils) {
  */
 function searchFilterAppliances(allAppliances) {
     document.querySelector("#search-bar-appliances").addEventListener("input" , event => {
-        console.log(event.target.value);
+        
         let appliancesSearched = allAppliances.filter((appliance)=> {
             if(appliance.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase())) {
                 return appliance
             }
             return false
         })
-        console.log(appliancesSearched);
+       
        document.querySelector(".appliances-list").innerHTML = `
             ${appliancesSearched.map(appliance => {
                 return `<li onClick ="addUstensil('${appliance}')" id="${appliance}">${appliance}</li>`
@@ -153,16 +152,14 @@ function searchFilterAppliances(allAppliances) {
 //on filtre sur la liste de recettes
 
 function filterRecipes() {
-    console.log(applianceFiltered)
+    
     let recipeFiltered = recipes.filter((recipe) => {
         if(search.length >2) {
             if(!recipe.description.toLowerCase().includes(search) && 
                 !recipe.name.toLocaleLowerCase().includes(search) && !searchIngredients(search, recipe.ingredients)) { 
-                    document.querySelector(".notFound").innerHTML = "Aucune recette ne correspond à votre critère" //message d'erreur si aucune recette trouvée
                     return false
             }
-        }
-        
+        } 
        
         if (ingredientFiltered.length) {
             let ingredientFounded = recipe.ingredients.find(ingredient => {
@@ -184,25 +181,29 @@ function filterRecipes() {
         }
         if (applianceFiltered.length) {
             let applianceFounded = applianceFiltered.includes(recipe.appliance)
-            console.log(applianceFounded);
+            
             if(applianceFounded == false) {
                 return false
             }
         }
-        document.querySelector(".notFound").innerHTML = "" //on enlève le message d'erreur
         return true //retourne le filtre
     })
-    console.log(recipeFiltered)
+    if(recipeFiltered.length === 0){
+        document.querySelector(".notFound").innerHTML = "Aucune recette ne correspond à votre critère" //message d'erreur si aucune recette trouvée
+    }else{
+        document.querySelector(".notFound").innerHTML = "" //on enlève le message d'erreur
+    }
     displayCard(recipeFiltered)
     getAllAplliances(recipeFiltered);
     getAllIngredients(recipeFiltered);
     getAllUstensils(recipeFiltered);
+   
 }
 // function searchIngredient
 
 function searchIngredients(letters, ingredients) {  
     ingredients.forEach((ingredient) => {
-       //console.log((ingredient));
+       
         if(ingredient.ingredient.toLocaleLowerCase().includes(letters)) {
             return true
         }
@@ -402,8 +403,7 @@ function addIngredient(element) {
  * @param {string} element supprime le filtre au click sur la croix de fermeture
  */
 function removeIngredient(event,element) {
-    console.log(event.target.parentElement)
-    console.log(element)
+   
     const tagHTML = event.target.parentElement //pour enlever le parent, croix et le span
     document.querySelector(".filter-result").removeChild(tagHTML)
     ingredientFiltered = ingredientFiltered.filter(ingredient => {
